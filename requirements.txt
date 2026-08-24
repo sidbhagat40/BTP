@@ -1,0 +1,7 @@
+# ModernBERT needs transformers >= 4.48
+torch>=2.2.0
+transformers>=4.48.0
+accelerate>=0.34.0
+safetensors>=0.4.0
+sentencepiece>=0.2.0
+python-dotenv>=1.0.0
