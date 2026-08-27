@@ -1,0 +1,7 @@
+google-genai
+python-dotenv
+groq
+transformers>=4.48
+datasets
+accelerate
+torch
