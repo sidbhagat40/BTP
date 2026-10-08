@@ -1,0 +1,21 @@
+{
+  "seed": 42,
+  "source": "D:/work/BTP/data/splits/probe_pool.jsonl",
+  "counts": {
+    "cloze_file": 200,
+    "mcq_file": 102,
+    "tf_file": 104,
+    "by_type": {
+      "cloze": 120,
+      "cloze_composition": 80,
+      "mcq_route": 60,
+      "mcq_concept": 42,
+      "tf": 100,
+      "tf_concept": 4
+    }
+  },
+  "notes": [
+    "Generated only from probe_pool.jsonl (no train/val leakage).",
+    "Evaluate vanilla ModernBERT-large vs artifacts/hea-bert-synth/best_or_final."
+  ]
+}

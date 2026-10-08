@@ -1,4 +1,8 @@
 models/
+*.safetensors
+*.bin
+*.pt
+*.onnx
 
 .hf_cache/
 .venv/
@@ -7,3 +11,10 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 artifacts/
+runs/
+wandb/
+
+artifacts/hea-bert-synth/best_or_final/
+artifacts/hea-bert-synth/checkpoint-158/
+artifacts/hea-bert-synth/checkpoint-237/
+
