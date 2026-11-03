@@ -12,7 +12,34 @@ Final tuned test losses (376-paper held-out split; paired, five mask seeds; 15%)
 | ModernBERT-large | 0.9737 | **0.6892** | **−29.2%** |
 
 All CIs exclude zero; results hold at a pre-declared 30% sensitivity protocol.
-Details: `RESULTS.md`.
+
+## Perplexity
+
+Perplexity over the corrupted evaluation positions, PPL = exp(token-weighted
+loss), five mask seeds. High absolute values are expected for chemical text
+(domain vocabulary, formulas); the *relative* reductions are the meaningful
+quantity.
+
+### Test (376-paper held-out split)
+
+| Condition | Original | Old CPT | Tuned |
+|---|---:|---:|---:|
+| Base @ 15% | 3.26 | 2.27 | **2.16** |
+| Base @ 30% | 4.56 | 2.95 | **2.71** |
+| Large @ 15% | 2.65 | — | **1.99** |
+| Large @ 30% | 3.51 | — | **2.43** |
+
+### Validation (375-paper split)
+
+| Condition | Original | Tuned |
+|---|---:|---:|
+| Base @ 15% | 3.21 | **2.17** |
+| Base @ 30% | 4.48 | **2.73** |
+| Large @ 15% | 2.61 | **2.00** |
+| Large @ 30% | 3.46 | **2.44** |
+
+Validation and test agree everywhere (largest deviation < 0.02 PPL), and the
+old ad-hoc CPT sits between the original and tuned models at both rates.
 
 ## Data
 
