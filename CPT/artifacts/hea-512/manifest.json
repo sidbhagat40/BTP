@@ -1,0 +1,65 @@
+{
+  "format_version": 1,
+  "tokenizer_name": "answerdotai/ModernBERT-base",
+  "tokenizer_revision": "main",
+  "tokenizer_sha256": "6fc70dfad42ab734cd6f473f5ef9e3883890989fc2fd503eee0dd021ece57360",
+  "max_length": 512,
+  "mlm_probability": 0.15,
+  "seed": 42,
+  "evaluation_masks": "frozen per document/chunk; same corruption for every evaluation",
+  "chunking": "non-overlapping; no cross-document packing; keep final partial chunks",
+  "statistics": {
+    "train": {
+      "chunks": 109785,
+      "tokens_including_special": 54490132
+    },
+    "validation": {
+      "chunks": 6319,
+      "tokens_including_special": 3139414
+    },
+    "test": {
+      "chunks": 6180,
+      "tokens_including_special": 3068086
+    }
+  },
+  "source_files": {
+    "train": {
+      "file": "train.jsonl",
+      "sha256": "df79dee0dc7edf58579e5700d6db773cd7f859b42a436dcbf52b9aa1f2d48b09",
+      "documents": 6750,
+      "characters": 243357634,
+      "min_characters": 866,
+      "median_characters": 32103.0,
+      "max_characters": 597487,
+      "documents_without_title": 0
+    },
+    "validation": {
+      "file": "validation.jsonl",
+      "sha256": "379ac1277db58f00e11357b9c4b715ea4e92b02e3e09b913e623983ecf0ea897",
+      "documents": 375,
+      "characters": 14172615,
+      "min_characters": 1191,
+      "median_characters": 32963,
+      "max_characters": 237051,
+      "documents_without_title": 0
+    },
+    "test": {
+      "file": "test.jsonl",
+      "sha256": "dbc34a4088b7712739c5a5d6f3a372dd05fff963cb7f2d56944fea308a3fc140",
+      "documents": 376,
+      "characters": 13738882,
+      "min_characters": 1522,
+      "median_characters": 32694.5,
+      "max_characters": 302964,
+      "documents_without_title": 0
+    }
+  },
+  "versions": {
+    "python": "3.11.5",
+    "torch": "2.7.1+cpu",
+    "transformers": "4.57.6",
+    "datasets": "4.4.1",
+    "accelerate": "1.11.0",
+    "tokenizers": "0.22.2"
+  }
+}

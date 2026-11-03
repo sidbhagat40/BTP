@@ -1,0 +1,35 @@
+# Environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.cache/
+build_cache/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+
+# Heavy artifacts: prepared datasets, optimizer checkpoints, trained models.
+# The small fingerprint manifest.json is kept: it records the SHA-256 of every
+# raw split file and the frozen 15% evaluation-mask protocol.
+artifacts/*
+!artifacts/hea-512
+artifacts/hea-512/*
+!artifacts/hea-512/manifest.json
+
+# Training / evaluation outputs (regenerable; kept only on the GPU server)
+outputs/
+
+# Raw corpus split text (train.jsonl is 235 MB, above GitHub's 100 MB limit).
+# Manifest.json stores this repository's canonical SHA-256 hashes for all three files.
+# Hand-authored examples are re-included below.
+*.jsonl
+!examples/*.jsonl
+
+# Insurance-group source PDFs/HTML (2.7 GB)
+LLM_PAPERS/
+
+# Downloaded model weights
+models/
+
+# Transfer archives produced for server updates
+*.zip
