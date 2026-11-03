@@ -1,0 +1,48 @@
+{
+  "format_version": 1,
+  "directory": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning",
+  "config": {
+    "model_name_or_path": "answerdotai/ModernBERT-base",
+    "data_dir": "/data/b23_chirag_bhutra/BTP/CPT/artifacts/hea-512",
+    "output_dir": "outputs/modernbert-base-hea-cpt",
+    "revision": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+    "learning_rate": 5e-05,
+    "num_train_epochs": 3,
+    "per_device_train_batch_size": 1,
+    "per_device_eval_batch_size": 1,
+    "gradient_accumulation_steps": 32,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "max_grad_norm": 1.0,
+    "precision": "auto",
+    "gradient_checkpointing": true,
+    "eval_steps": 500,
+    "logging_steps": 25,
+    "save_total_limit": 2,
+    "validation_max_samples": 1024,
+    "seed": 42,
+    "validation_seed": 42,
+    "token_weighted_eval": true
+  },
+  "manifest_sha256": "5bb3a67321c44c78b86f60a1e128cc1539a472217332a9f744c4b8a7f66bedc0",
+  "original_identity": {
+    "model": "answerdotai/ModernBERT-base",
+    "commit": "8949b909ec900327062f0ebf497f51aef5e6f0c8"
+  },
+  "screen_steps": 2000,
+  "screen_validation_chunks": 1024,
+  "baseline_parameters": {
+    "learning_rate": 5e-05,
+    "training_mlm_probability": 0.15,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06
+  },
+  "learning_rates": [
+    2e-05,
+    5e-05,
+    0.0001
+  ],
+  "selection_metric": "token_weighted_validation_mlm_loss",
+  "evaluation_mask_probability": 0.15,
+  "note": "Validation-only search; test results already inspected before this study."
+}

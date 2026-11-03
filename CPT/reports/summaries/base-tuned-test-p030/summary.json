@@ -1,0 +1,85 @@
+{
+  "split": "test",
+  "source_sha256": "dbc34a4088b7712739c5a5d6f3a372dd05fff963cb7f2d56944fea308a3fc140",
+  "sample_limited": false,
+  "diagnostic_only": false,
+  "comparisons": [
+    {
+      "masking_probability": 0.3,
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "original": {
+        "token_weighted_mlm_loss": {
+          "mean": 1.5162448522858796,
+          "std_across_mask_seeds": 0.003630606493018974
+        },
+        "masked_token_accuracy": {
+          "mean": 0.6919319798913203,
+          "std_across_mask_seeds": 0.0008660339634966928
+        },
+        "masked_token_top5_accuracy": {
+          "mean": 0.8390020431509578,
+          "std_across_mask_seeds": 0.0006774374350129546
+        },
+        "paper_macro_mlm_loss": {
+          "mean": 1.495617732710715,
+          "std_across_mask_seeds": 0.0036223000015230735
+        },
+        "mask_replaced_top1_accuracy": {
+          "mean": 0.6590660053664942,
+          "std_across_mask_seeds": 0.0008991076968533089
+        }
+      },
+      "cpt": {
+        "token_weighted_mlm_loss": {
+          "mean": 0.9975619730906056,
+          "std_across_mask_seeds": 0.0029156729358942204
+        },
+        "masked_token_accuracy": {
+          "mean": 0.7689202655635862,
+          "std_across_mask_seeds": 0.0006021449418936709
+        },
+        "masked_token_top5_accuracy": {
+          "mean": 0.9051191184536128,
+          "std_across_mask_seeds": 0.0004108941702420723
+        },
+        "paper_macro_mlm_loss": {
+          "mean": 0.9737954062473281,
+          "std_across_mask_seeds": 0.0032959649015971205
+        },
+        "mask_replaced_top1_accuracy": {
+          "mean": 0.743969192659653,
+          "std_across_mask_seeds": 0.0007067271613636374
+        }
+      },
+      "mean_loss_reduction": 0.518682879195274,
+      "relative_mean_loss_reduction_percent": 34.20838517033127,
+      "mean_accuracy_increase": 0.0769882856722659,
+      "paired_paper_bootstrap": {
+        "unit": "source paper; paired across models and all masking seeds",
+        "papers": 376,
+        "iterations": 2000,
+        "bootstrap_seed": 2026,
+        "positive_means": "CPT improvement",
+        "loss_reduction_95ci": [
+          0.5030969486309125,
+          0.5341132225516408
+        ],
+        "accuracy_increase_95ci": [
+          0.07463982818881855,
+          0.07941490429121614
+        ],
+        "paper_macro_loss_reduction_95ci": [
+          0.5086788280739637,
+          0.5353863888305592
+        ],
+        "scope": "Paper-sampling uncertainty conditional on these checkpoints and masking seeds; not training-seed uncertainty."
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "parameters": {
+      "learning_rate": 6e-05,
+      "training_mlm_probability": 0.3,
+      "weight_decay": 0.1,
+      "warmup_ratio": 0.02
+    },
+    "training_seeds": [
+      42
+    ],
+    "mean_validation_loss": 0.6945617452610143,
+    "std_across_training_seeds": null
+  },
+  {
+    "parameters": {
+      "learning_rate": 6e-05,
+      "training_mlm_probability": 0.3,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.06
+    },
+    "training_seeds": [
+      42
+    ],
+    "mean_validation_loss": 0.6955967352274816,
+    "std_across_training_seeds": null
+  },
+  {
+    "parameters": {
+      "learning_rate": 3e-05,
+      "training_mlm_probability": 0.15,
+      "weight_decay": 0.01,
+      "warmup_ratio": 0.06
+    },
+    "training_seeds": [
+      42
+    ],
+    "mean_validation_loss": 0.7276076071763441,
+    "std_across_training_seeds": null
+  }
+]
