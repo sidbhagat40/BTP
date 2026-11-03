@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "test_papers": 376,
+  "test_chunks": 6180,
+  "check": "Reconstructed source-paper mapping and chunk count; sampled seed-42 corruption exactly matches earlier saved test data.",
+  "note": "Tokenization/masking verification only. No original/CPT model predictions were run locally."
+}

@@ -1,0 +1,525 @@
+{
+  "passed": true,
+  "probes": 32,
+  "candidates": 86,
+  "max_sequence_tokens": 36,
+  "note": "Tokenization-only check with the actual ModernBERT tokenizer; no original/CPT model predictions were evaluated.",
+  "details": [
+    {
+      "id": "hea-cantor-element",
+      "candidate": "nickel",
+      "target_tokens": 1,
+      "sequence_tokens": 27
+    },
+    {
+      "id": "hea-cantor-element",
+      "candidate": "titanium",
+      "target_tokens": 1,
+      "sequence_tokens": 27
+    },
+    {
+      "id": "hea-cantor-element",
+      "candidate": "aluminum",
+      "target_tokens": 1,
+      "sequence_tokens": 27
+    },
+    {
+      "id": "hea-cantor-element",
+      "candidate": "copper",
+      "target_tokens": 1,
+      "sequence_tokens": 27
+    },
+    {
+      "id": "hea-entropy-equiatomic",
+      "candidate": "equal",
+      "target_tokens": 1,
+      "sequence_tokens": 29
+    },
+    {
+      "id": "hea-entropy-equiatomic",
+      "candidate": "unequal",
+      "target_tokens": 1,
+      "sequence_tokens": 29
+    },
+    {
+      "id": "hea-no-single-phase-guarantee",
+      "candidate": "false",
+      "target_tokens": 1,
+      "sequence_tokens": 29
+    },
+    {
+      "id": "hea-no-single-phase-guarantee",
+      "candidate": "true",
+      "target_tokens": 1,
+      "sequence_tokens": 29
+    },
+    {
+      "id": "hea-refractory-element",
+      "candidate": "tungsten",
+      "target_tokens": 2,
+      "sequence_tokens": 20
+    },
+    {
+      "id": "hea-refractory-element",
+      "candidate": "titanium",
+      "target_tokens": 1,
+      "sequence_tokens": 19
+    },
+    {
+      "id": "hea-refractory-element",
+      "candidate": "vanadium",
+      "target_tokens": 2,
+      "sequence_tokens": 20
+    },
+    {
+      "id": "hea-refractory-element",
+      "candidate": "tin",
+      "target_tokens": 1,
+      "sequence_tokens": 19
+    },
+    {
+      "id": "hea-equal-component-fraction",
+      "candidate": "20",
+      "target_tokens": 1,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "hea-equal-component-fraction",
+      "candidate": "5",
+      "target_tokens": 1,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "hea-equal-component-fraction",
+      "candidate": "25",
+      "target_tokens": 1,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "hea-equal-component-fraction",
+      "candidate": "50",
+      "target_tokens": 1,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "alloy-order",
+      "candidate": "same",
+      "target_tokens": 1,
+      "sequence_tokens": 32
+    },
+    {
+      "id": "alloy-order",
+      "candidate": "different",
+      "target_tokens": 1,
+      "sequence_tokens": 32
+    },
+    {
+      "id": "alloy-scaled-ratios",
+      "candidate": "same",
+      "target_tokens": 1,
+      "sequence_tokens": 22
+    },
+    {
+      "id": "alloy-scaled-ratios",
+      "candidate": "different",
+      "target_tokens": 1,
+      "sequence_tokens": 22
+    },
+    {
+      "id": "alloy-decimal-scaling",
+      "candidate": "same",
+      "target_tokens": 1,
+      "sequence_tokens": 36
+    },
+    {
+      "id": "alloy-decimal-scaling",
+      "candidate": "different",
+      "target_tokens": 1,
+      "sequence_tokens": 36
+    },
+    {
+      "id": "alloy-al-content",
+      "candidate": "different",
+      "target_tokens": 1,
+      "sequence_tokens": 28
+    },
+    {
+      "id": "alloy-al-content",
+      "candidate": "same",
+      "target_tokens": 1,
+      "sequence_tokens": 28
+    },
+    {
+      "id": "alloy-substitution",
+      "candidate": "different",
+      "target_tokens": 1,
+      "sequence_tokens": 19
+    },
+    {
+      "id": "alloy-substitution",
+      "candidate": "same",
+      "target_tokens": 1,
+      "sequence_tokens": 19
+    },
+    {
+      "id": "alloy-missing-elements",
+      "candidate": "different",
+      "target_tokens": 1,
+      "sequence_tokens": 23
+    },
+    {
+      "id": "alloy-missing-elements",
+      "candidate": "same",
+      "target_tokens": 1,
+      "sequence_tokens": 23
+    },
+    {
+      "id": "alloy-identical-reference",
+      "candidate": "same",
+      "target_tokens": 1,
+      "sequence_tokens": 28
+    },
+    {
+      "id": "alloy-identical-reference",
+      "candidate": "different",
+      "target_tokens": 1,
+      "sequence_tokens": 28
+    },
+    {
+      "id": "alloy-processing-caveat",
+      "candidate": "false",
+      "target_tokens": 1,
+      "sequence_tokens": 23
+    },
+    {
+      "id": "alloy-processing-caveat",
+      "candidate": "true",
+      "target_tokens": 1,
+      "sequence_tokens": 23
+    },
+    {
+      "id": "alloy-missing-information",
+      "candidate": "undetermined",
+      "target_tokens": 2,
+      "sequence_tokens": 31
+    },
+    {
+      "id": "alloy-missing-information",
+      "candidate": "known",
+      "target_tokens": 1,
+      "sequence_tokens": 30
+    },
+    {
+      "id": "materials-fcc",
+      "candidate": "FCC",
+      "target_tokens": 1,
+      "sequence_tokens": 17
+    },
+    {
+      "id": "materials-fcc",
+      "candidate": "BCC",
+      "target_tokens": 2,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "materials-fcc",
+      "candidate": "HCP",
+      "target_tokens": 2,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "materials-bcc",
+      "candidate": "BCC",
+      "target_tokens": 2,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "materials-bcc",
+      "candidate": "FCC",
+      "target_tokens": 1,
+      "sequence_tokens": 17
+    },
+    {
+      "id": "materials-bcc",
+      "candidate": "HCP",
+      "target_tokens": 2,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "materials-hcp",
+      "candidate": "HCP",
+      "target_tokens": 2,
+      "sequence_tokens": 19
+    },
+    {
+      "id": "materials-hcp",
+      "candidate": "FCC",
+      "target_tokens": 1,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "materials-hcp",
+      "candidate": "BCC",
+      "target_tokens": 2,
+      "sequence_tokens": 19
+    },
+    {
+      "id": "materials-xrd",
+      "candidate": "XRD",
+      "target_tokens": 2,
+      "sequence_tokens": 13
+    },
+    {
+      "id": "materials-xrd",
+      "candidate": "SEM",
+      "target_tokens": 1,
+      "sequence_tokens": 12
+    },
+    {
+      "id": "materials-xrd",
+      "candidate": "DSC",
+      "target_tokens": 2,
+      "sequence_tokens": 13
+    },
+    {
+      "id": "materials-tensile-compression",
+      "candidate": "compresses",
+      "target_tokens": 2,
+      "sequence_tokens": 17
+    },
+    {
+      "id": "materials-tensile-compression",
+      "candidate": "melts",
+      "target_tokens": 2,
+      "sequence_tokens": 17
+    },
+    {
+      "id": "materials-tensile-compression",
+      "candidate": "dissolves",
+      "target_tokens": 2,
+      "sequence_tokens": 17
+    },
+    {
+      "id": "materials-hardness-not-strength",
+      "candidate": "false",
+      "target_tokens": 1,
+      "sequence_tokens": 19
+    },
+    {
+      "id": "materials-hardness-not-strength",
+      "candidate": "true",
+      "target_tokens": 1,
+      "sequence_tokens": 19
+    },
+    {
+      "id": "materials-strength-conversion",
+      "candidate": "1000",
+      "target_tokens": 1,
+      "sequence_tokens": 15
+    },
+    {
+      "id": "materials-strength-conversion",
+      "candidate": "100",
+      "target_tokens": 1,
+      "sequence_tokens": 15
+    },
+    {
+      "id": "materials-strength-conversion",
+      "candidate": "10",
+      "target_tokens": 1,
+      "sequence_tokens": 15
+    },
+    {
+      "id": "materials-strength-conversion",
+      "candidate": "1",
+      "target_tokens": 1,
+      "sequence_tokens": 15
+    },
+    {
+      "id": "materials-temperature-conversion",
+      "candidate": "273.15",
+      "target_tokens": 3,
+      "sequence_tokens": 20
+    },
+    {
+      "id": "materials-temperature-conversion",
+      "candidate": "0",
+      "target_tokens": 1,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "materials-temperature-conversion",
+      "candidate": "100",
+      "target_tokens": 1,
+      "sequence_tokens": 18
+    },
+    {
+      "id": "materials-temperature-conversion",
+      "candidate": "373.15",
+      "target_tokens": 3,
+      "sequence_tokens": 20
+    },
+    {
+      "id": "materials-percent-basis",
+      "candidate": "false",
+      "target_tokens": 1,
+      "sequence_tokens": 22
+    },
+    {
+      "id": "materials-percent-basis",
+      "candidate": "true",
+      "target_tokens": 1,
+      "sequence_tokens": 22
+    },
+    {
+      "id": "general-agreement",
+      "candidate": "presented",
+      "target_tokens": 1,
+      "sequence_tokens": 13
+    },
+    {
+      "id": "general-agreement",
+      "candidate": "presents",
+      "target_tokens": 1,
+      "sequence_tokens": 13
+    },
+    {
+      "id": "general-agreement",
+      "candidate": "presenting",
+      "target_tokens": 1,
+      "sequence_tokens": 13
+    },
+    {
+      "id": "general-plural",
+      "candidate": "children",
+      "target_tokens": 1,
+      "sequence_tokens": 9
+    },
+    {
+      "id": "general-plural",
+      "candidate": "childs",
+      "target_tokens": 2,
+      "sequence_tokens": 10
+    },
+    {
+      "id": "general-plural",
+      "candidate": "child",
+      "target_tokens": 1,
+      "sequence_tokens": 9
+    },
+    {
+      "id": "general-antonym",
+      "candidate": "cold",
+      "target_tokens": 1,
+      "sequence_tokens": 9
+    },
+    {
+      "id": "general-antonym",
+      "candidate": "warm",
+      "target_tokens": 1,
+      "sequence_tokens": 9
+    },
+    {
+      "id": "general-antonym",
+      "candidate": "bright",
+      "target_tokens": 1,
+      "sequence_tokens": 9
+    },
+    {
+      "id": "general-object-use",
+      "candidate": "umbrella",
+      "target_tokens": 1,
+      "sequence_tokens": 14
+    },
+    {
+      "id": "general-object-use",
+      "candidate": "notebook",
+      "target_tokens": 1,
+      "sequence_tokens": 14
+    },
+    {
+      "id": "general-object-use",
+      "candidate": "oven",
+      "target_tokens": 1,
+      "sequence_tokens": 14
+    },
+    {
+      "id": "general-entailment",
+      "candidate": "bird",
+      "target_tokens": 1,
+      "sequence_tokens": 31
+    },
+    {
+      "id": "general-entailment",
+      "candidate": "fish",
+      "target_tokens": 1,
+      "sequence_tokens": 31
+    },
+    {
+      "id": "general-entailment",
+      "candidate": "stone",
+      "target_tokens": 1,
+      "sequence_tokens": 31
+    },
+    {
+      "id": "general-negation",
+      "candidate": "false",
+      "target_tokens": 1,
+      "sequence_tokens": 19
+    },
+    {
+      "id": "general-negation",
+      "candidate": "true",
+      "target_tokens": 1,
+      "sequence_tokens": 19
+    },
+    {
+      "id": "general-positive-control",
+      "candidate": "true",
+      "target_tokens": 1,
+      "sequence_tokens": 33
+    },
+    {
+      "id": "general-positive-control",
+      "candidate": "false",
+      "target_tokens": 1,
+      "sequence_tokens": 33
+    },
+    {
+      "id": "general-word-order",
+      "candidate": "order",
+      "target_tokens": 1,
+      "sequence_tokens": 20
+    },
+    {
+      "id": "general-word-order",
+      "candidate": "color",
+      "target_tokens": 1,
+      "sequence_tokens": 20
+    },
+    {
+      "id": "general-word-order",
+      "candidate": "temperature",
+      "target_tokens": 1,
+      "sequence_tokens": 20
+    },
+    {
+      "id": "general-synonym",
+      "candidate": "challenging",
+      "target_tokens": 1,
+      "sequence_tokens": 20
+    },
+    {
+      "id": "general-synonym",
+      "candidate": "effortless",
+      "target_tokens": 2,
+      "sequence_tokens": 21
+    },
+    {
+      "id": "general-synonym",
+      "candidate": "wooden",
+      "target_tokens": 1,
+      "sequence_tokens": 20
+    }
+  ]
+}

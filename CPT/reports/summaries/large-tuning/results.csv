@@ -1,0 +1,14 @@
+stage,trial,learning_rate,training_mlm_probability,weight_decay,warmup_ratio,seed,validation_loss,model_path
+screen,screen-06,6e-05,0.3,0.01,0.06,42,0.7710043356064489,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/screen-06/final
+screen,screen-04,3e-05,0.3,0.01,0.06,42,0.7860313583432426,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/screen-04/final
+screen,screen-05,6e-05,0.15,0.01,0.06,42,0.7959590823882282,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/screen-05/final
+screen,screen-03,3e-05,0.15,0.01,0.06,42,0.804142294877434,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/screen-03/final
+screen,screen-02,1e-05,0.3,0.01,0.06,42,0.8226858190603722,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/screen-02/final
+screen,screen-01,1e-05,0.15,0.01,0.06,42,0.8348529630252677,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/screen-01/final
+refine,refine-03,6e-05,0.3,0.1,0.02,42,0.7701187043244078,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/refine-03/final
+refine,refine-02,6e-05,0.3,0.0,0.1,42,0.7715598185943029,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/refine-02/final
+refine,refine-04,6e-05,0.3,0.1,0.1,42,0.7715906490122173,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/refine-04/final
+refine,refine-01,6e-05,0.3,0.0,0.02,42,0.7722550267462119,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/refine-01/final
+confirm,confirm-02,6e-05,0.3,0.1,0.02,42,0.6945617452610143,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/confirm-02/final
+confirm,confirm-03,6e-05,0.3,0.01,0.06,42,0.6955967352274816,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/confirm-03/final
+confirm,confirm-01,3e-05,0.15,0.01,0.06,42,0.7276076071763441,/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning/runs/confirm-01/final

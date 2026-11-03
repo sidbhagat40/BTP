@@ -1,0 +1,189 @@
+[
+  {
+    "stage": "screen",
+    "trial": "screen-06",
+    "learning_rate": 0.0001,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "seed": 42,
+    "validation_loss": 0.8805048023075582,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/screen-06/final"
+  },
+  {
+    "stage": "screen",
+    "trial": "screen-05",
+    "learning_rate": 0.0001,
+    "training_mlm_probability": 0.15,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "seed": 42,
+    "validation_loss": 0.9074061164749514,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/screen-05/final"
+  },
+  {
+    "stage": "screen",
+    "trial": "screen-04",
+    "learning_rate": 5e-05,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "seed": 42,
+    "validation_loss": 0.909954474937882,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/screen-04/final"
+  },
+  {
+    "stage": "screen",
+    "trial": "screen-03",
+    "learning_rate": 5e-05,
+    "training_mlm_probability": 0.15,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "seed": 42,
+    "validation_loss": 0.9310036949404744,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/screen-03/final"
+  },
+  {
+    "stage": "screen",
+    "trial": "screen-02",
+    "learning_rate": 2e-05,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "seed": 42,
+    "validation_loss": 0.9568175916865935,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/screen-02/final"
+  },
+  {
+    "stage": "screen",
+    "trial": "screen-01",
+    "learning_rate": 2e-05,
+    "training_mlm_probability": 0.15,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "seed": 42,
+    "validation_loss": 0.9744255005677646,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/screen-01/final"
+  },
+  {
+    "stage": "refine",
+    "trial": "refine-03",
+    "learning_rate": 0.0001,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.1,
+    "warmup_ratio": 0.02,
+    "seed": 42,
+    "validation_loss": 0.8795896325167416,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/refine-03/final"
+  },
+  {
+    "stage": "refine",
+    "trial": "refine-04",
+    "learning_rate": 0.0001,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.1,
+    "warmup_ratio": 0.1,
+    "seed": 42,
+    "validation_loss": 0.8797261569235125,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/refine-04/final"
+  },
+  {
+    "stage": "refine",
+    "trial": "refine-01",
+    "learning_rate": 0.0001,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.0,
+    "warmup_ratio": 0.02,
+    "seed": 42,
+    "validation_loss": 0.8801356313644715,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/refine-01/final"
+  },
+  {
+    "stage": "refine",
+    "trial": "refine-02",
+    "learning_rate": 0.0001,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.0,
+    "warmup_ratio": 0.1,
+    "seed": 42,
+    "validation_loss": 0.8810225792746776,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/refine-02/final"
+  },
+  {
+    "stage": "confirm",
+    "trial": "confirm-02",
+    "learning_rate": 0.0001,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.1,
+    "warmup_ratio": 0.02,
+    "seed": 42,
+    "validation_loss": 0.779452399923373,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/confirm-02/final"
+  },
+  {
+    "stage": "confirm",
+    "trial": "confirm-03",
+    "learning_rate": 0.0001,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.1,
+    "warmup_ratio": 0.1,
+    "seed": 42,
+    "validation_loss": 0.7803886283891166,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/confirm-03/final"
+  },
+  {
+    "stage": "confirm",
+    "trial": "confirm-01",
+    "learning_rate": 5e-05,
+    "training_mlm_probability": 0.15,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "seed": 42,
+    "validation_loss": 0.8271591501839165,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/confirm-01/final"
+  },
+  {
+    "stage": "repeat",
+    "trial": "repeat-02-seed43",
+    "learning_rate": 0.0001,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.1,
+    "warmup_ratio": 0.02,
+    "seed": 43,
+    "validation_loss": 0.7795731100562875,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/repeat-02-seed43/final"
+  },
+  {
+    "stage": "repeat",
+    "trial": "repeat-02-seed44",
+    "learning_rate": 0.0001,
+    "training_mlm_probability": 0.3,
+    "weight_decay": 0.1,
+    "warmup_ratio": 0.02,
+    "seed": 44,
+    "validation_loss": 0.7799942299689228,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/repeat-02-seed44/final"
+  },
+  {
+    "stage": "repeat",
+    "trial": "repeat-01-seed44",
+    "learning_rate": 5e-05,
+    "training_mlm_probability": 0.15,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "seed": 44,
+    "validation_loss": 0.8267651919917894,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/repeat-01-seed44/final"
+  },
+  {
+    "stage": "repeat",
+    "trial": "repeat-01-seed43",
+    "learning_rate": 5e-05,
+    "training_mlm_probability": 0.15,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "seed": 43,
+    "validation_loss": 0.8272226888693085,
+    "model_path": "/data/b23_chirag_bhutra/BTP/CPT/outputs/base-tuning/runs/repeat-01-seed43/final"
+  }
+]

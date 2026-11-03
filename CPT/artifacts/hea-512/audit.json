@@ -1,0 +1,41 @@
+{
+  "splits": {
+    "train": {
+      "file": "train.jsonl",
+      "sha256": "df79dee0dc7edf58579e5700d6db773cd7f859b42a436dcbf52b9aa1f2d48b09",
+      "documents": 6750,
+      "characters": 243357634,
+      "min_characters": 866,
+      "median_characters": 32103.0,
+      "max_characters": 597487,
+      "documents_without_title": 0
+    },
+    "validation": {
+      "file": "validation.jsonl",
+      "sha256": "379ac1277db58f00e11357b9c4b715ea4e92b02e3e09b913e623983ecf0ea897",
+      "documents": 375,
+      "characters": 14172615,
+      "min_characters": 1191,
+      "median_characters": 32963,
+      "max_characters": 237051,
+      "documents_without_title": 0
+    },
+    "test": {
+      "file": "test.jsonl",
+      "sha256": "dbc34a4088b7712739c5a5d6f3a372dd05fff963cb7f2d56944fea308a3fc140",
+      "documents": 376,
+      "characters": 13738882,
+      "min_characters": 1522,
+      "median_characters": 32694.5,
+      "max_characters": 302964,
+      "documents_without_title": 0
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "Exact text and title checks do not detect all near duplicates, preprint/publisher versions, or overlap with the original ModernBERT pretraining corpus."
+  ],
+  "exact_duplicate_groups": [],
+  "cross_split_title_groups": [],
+  "passed": true
+}

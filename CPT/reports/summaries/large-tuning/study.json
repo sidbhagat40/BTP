@@ -1,0 +1,51 @@
+{
+  "format_version": 1,
+  "directory": "/data/b23_chirag_bhutra/BTP/CPT/outputs/large-tuning",
+  "config": {
+    "model_name_or_path": "/data/b23_chirag_bhutra/BTP/CPT/models/ModernBERT-large",
+    "data_dir": "/data/b23_chirag_bhutra/BTP/CPT/artifacts/hea-512",
+    "output_dir": "outputs/modernbert-large-hea-cpt",
+    "revision": "main",
+    "learning_rate": 3e-05,
+    "num_train_epochs": 3,
+    "per_device_train_batch_size": 1,
+    "per_device_eval_batch_size": 1,
+    "gradient_accumulation_steps": 32,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06,
+    "max_grad_norm": 1.0,
+    "precision": "auto",
+    "gradient_checkpointing": true,
+    "eval_steps": 500,
+    "logging_steps": 25,
+    "save_total_limit": 2,
+    "validation_max_samples": 1024,
+    "seed": 42,
+    "validation_seed": 42,
+    "token_weighted_eval": true
+  },
+  "manifest_sha256": "5bb3a67321c44c78b86f60a1e128cc1539a472217332a9f744c4b8a7f66bedc0",
+  "original_identity": {
+    "config.json": "55dca68059e98f0debf8eb63ab355c451c65b1f5d90fdca4754113fdaadd2cca",
+    "model.safetensors": "44510fec5d3a81a1877f225637b869495f18e55f6f23a09abb9be0acc030295f",
+    "special_tokens_map.json": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+    "tokenizer.json": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1",
+    "tokenizer_config.json": "3cd2017ff46d0a527e5d39cae39272eccfa1f19bb9f89b05d166aab2e38354e2"
+  },
+  "screen_steps": 2000,
+  "screen_validation_chunks": 1024,
+  "baseline_parameters": {
+    "learning_rate": 3e-05,
+    "training_mlm_probability": 0.15,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.06
+  },
+  "learning_rates": [
+    1e-05,
+    3e-05,
+    6e-05
+  ],
+  "selection_metric": "token_weighted_validation_mlm_loss",
+  "evaluation_mask_probability": 0.15,
+  "note": "Validation-only search; test results already inspected before this study."
+}

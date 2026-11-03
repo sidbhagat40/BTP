@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "statistics": {
+    "train": {
+      "chunks": 109785,
+      "tokens_including_special": 54490132
+    },
+    "validation": {
+      "chunks": 6319,
+      "tokens_including_special": 3139414
+    },
+    "test": {
+      "chunks": 6180,
+      "tokens_including_special": 3068086
+    }
+  },
+  "checks": [
+    "saved dataset reload",
+    "manifest chunk counts",
+    "sampled native special tokens and sequence lengths",
+    "sampled evaluation labels",
+    "finite tiny-model loss on real prepared training and validation chunks",
+    "repeatable saved test corruption"
+  ],
+  "note": "Only a randomly initialized tiny ModernBERT was used for the forward-pass check. Full base/large GPU training has not been run."
+}

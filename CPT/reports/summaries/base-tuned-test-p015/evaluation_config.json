@@ -1,0 +1,45 @@
+{
+  "arguments": {
+    "original_model": "answerdotai/ModernBERT-base",
+    "original_revision": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+    "cpt_model": "outputs/base-tuning/runs/confirm-02/final",
+    "prepared_dir": "artifacts/hea-512",
+    "raw_dir": ".",
+    "input_file": null,
+    "split": "test",
+    "probabilities": [
+      0.15
+    ],
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "batch_size": 1,
+    "bootstrap_iterations": 2000,
+    "max_papers": null,
+    "precision": "auto",
+    "offline": true,
+    "cpu": false,
+    "output_dir": "outputs/base-tuned-test-p015"
+  },
+  "source_sha256": "dbc34a4088b7712739c5a5d6f3a372dd05fff963cb7f2d56944fea308a3fc140",
+  "prepared_manifest_sha256": "5bb3a67321c44c78b86f60a1e128cc1539a472217332a9f744c4b8a7f66bedc0",
+  "versions": {
+    "python": "3.11.17",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.6",
+    "datasets": "4.4.1",
+    "accelerate": "1.11.0",
+    "tokenizers": "0.22.2"
+  },
+  "precision": "bf16",
+  "device": "NVIDIA RTX A5000",
+  "sample_limited": false,
+  "corruption": "80/10/10 replacements; at least one target per chunk; 15% is the primary protocol",
+  "warning": "Changing evaluation masking probability is a sensitivity analysis, not tuning the CPT training mask rate.",
+  "original_resolved_commit": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+  "cpt_resolved_commit": null
+}
