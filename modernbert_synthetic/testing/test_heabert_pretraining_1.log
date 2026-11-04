@@ -1,0 +1,134 @@
+nohup: ignoring input
+Device set to use cuda:0
+Device set to use cuda:0
+
+======================================================================
+FILL-MASK PROBES -- BASE ModernBERT (before continued pretraining) (answerdotai/ModernBERT-base)
+======================================================================
+
+  NbMoTaW is a refractory high entropy alloy with a body-centered [MASK] crystal structure.
+    ' cubic'             score=0.871
+    ' periodic'          score=0.007
+    ' asymmetric'        score=0.006
+    ' spherical'         score=0.005
+    ' metal'             score=0.004
+
+  Reducing the grain size typically raises both the yield strength and the [MASK] according to Hall-Petch behavior.
+    ' yield'             score=0.658
+    ' density'           score=0.022
+    ' yields'            score=0.018
+    ' quality'           score=0.018
+    ' productivity'      score=0.015
+
+  The alloy exhibits pronounced lattice [MASK] due to the large atomic size mismatch among its constituent elements.
+    ' distortion'        score=0.185
+    ' defects'           score=0.116
+    ' mismatch'          score=0.115
+    ' distortions'       score=0.099
+    ' disorder'          score=0.098
+
+  Vickers indentation is commonly used to measure the [MASK] of refractory high entropy alloys.
+    ' hardness'          score=0.327
+    ' strength'          score=0.175
+    ' stiffness'         score=0.036
+    ' resistance'        score=0.035
+    ' properties'        score=0.034
+
+  The addition of chromium tends to promote the formation of brittle [MASK] phases at grain boundaries.
+    ' mineral'           score=0.288
+    ' crystalline'       score=0.138
+    ' crystal'           score=0.116
+    ' amorphous'         score=0.084
+    ' rock'              score=0.035
+
+  Increasing the volume fraction of secondary precipitates generally raises the material's [MASK].
+    ' density'           score=0.238
+    ' solubility'        score=0.188
+    ' viscosity'         score=0.093
+    ' pH'                score=0.058
+    ' concentration'     score=0.035
+
+  At elevated temperature, the alloy's oxidation resistance is governed by the formation of a protective [MASK].
+    ' layer'             score=0.510
+    ' film'              score=0.097
+    ' barrier'           score=0.081
+    ' oxide'             score=0.059
+    ' coating'           score=0.046
+
+  Finer grains impede dislocation motion, which is the basis of the Hall-Petch [MASK] mechanism.
+    'um'                 score=0.089
+    'am'                 score=0.062
+    'man'                score=0.049
+    'kin'                score=0.038
+    'field'              score=0.034
+
+======================================================================
+FILL-MASK PROBES -- HEABERT (after continued pretraining) (./heabert-base-pretrained_2/final)
+======================================================================
+
+  NbMoTaW is a refractory high entropy alloy with a body-centered [MASK] crystal structure.
+    ' cubic'             score=0.955
+    ' primary'           score=0.010
+    ' dense'             score=0.003
+    'ic'                 score=0.003
+    'ing'                score=0.003
+
+  Reducing the grain size typically raises both the yield strength and the [MASK] according to Hall-Petch behavior.
+    ' hardness'          score=0.466
+    ' elongation'        score=0.301
+    ' strength'          score=0.078
+    ' yield'             score=0.055
+    ' modulus'           score=0.034
+
+  The alloy exhibits pronounced lattice [MASK] due to the large atomic size mismatch among its constituent elements.
+    ' distortion'        score=0.985
+    ' distortions'       score=0.009
+    ' strain'            score=0.003
+    ' disorder'          score=0.001
+    ' deformation'       score=0.000
+
+  Vickers indentation is commonly used to measure the [MASK] of refractory high entropy alloys.
+    ' hardness'          score=0.905
+    ' strength'          score=0.056
+    ' stiffness'         score=0.016
+    ' resistance'        score=0.004
+    ' density'           score=0.003
+
+  The addition of chromium tends to promote the formation of brittle [MASK] phases at grain boundaries.
+    ' secondary'         score=0.731
+    ' ordered'           score=0.039
+    ' precipitation'     score=0.027
+    ' oxide'             score=0.020
+    ' micro'             score=0.017
+
+  Increasing the volume fraction of secondary precipitates generally raises the material's [MASK].
+    ' hardness'          score=0.722
+    ' strength'          score=0.072
+    ' resistance'        score=0.042
+    ' modulus'           score=0.036
+    ' density'           score=0.032
+
+  At elevated temperature, the alloy's oxidation resistance is governed by the formation of a protective [MASK].
+    ' layer'             score=0.255
+    ' film'              score=0.137
+    ' barrier'           score=0.122
+    ' lattice'           score=0.081
+    ' oxide'             score=0.068
+
+  Finer grains impede dislocation motion, which is the basis of the Hall-Petch [MASK] mechanism.
+    ' slip'              score=0.266
+    ' lattice'           score=0.028
+    ' fracture'          score=0.026
+    ' dislocation'       score=0.023
+    ' strengthening'     score=0.018
+
+======================================================================
+PERPLEXITY COMPARISON on 50 held-out passages from hea_corpus_groq_combined.jsonl
+======================================================================
+Using 50 passages.
+
+  BASE ModernBERT : loss=1.6443  perplexity=5.18
+  HEABERT         : loss=0.7889  perplexity=2.20
+
+  HEABERT's perplexity is 2.98 points LOWER than base ModernBERT's on this domain text --
+  consistent with the continued pretraining having helped, at least on this held-out sample.

@@ -1,0 +1,101 @@
+nohup: ignoring input
+Device set to use cuda:0
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Device set to use cuda:0
+Device set to use cuda:0
+Device set to use cuda:0
+
+======================================================================
+PROBE BATTERY -- base (answerdotai/ModernBERT-base)
+======================================================================
+
+  Category                      Hit@1    Hit@5      MRR  (n)
+  fatigue                        0.50     1.00     0.67  (2)
+  fracture_toughness             0.00     0.00     0.00  (2)
+  hall_petch                     0.33     0.33     0.39  (3)
+  hardness                       0.33     0.33     0.33  (3)
+  lattice_distortion             0.33     0.33     0.37  (3)
+  modulus                        1.00     1.00     1.00  (2)
+  ni_superalloy_comparison       0.50     0.50     0.50  (2)
+  oxidation                      0.67     1.00     0.83  (3)
+  phase_stability                0.33     0.33     0.38  (3)
+  secondary_phases               0.33     0.33     0.33  (3)
+  tensile_yield                  0.67     0.67     0.67  (3)
+
+  OVERALL                        0.45     0.52     0.49  (29)
+
+======================================================================
+PROBE BATTERY -- v1 (./heabert-base-pretrained_1/final)
+======================================================================
+
+  Category                      Hit@1    Hit@5      MRR  (n)
+  fatigue                        1.00     1.00     1.00  (2)
+  fracture_toughness             0.00     0.00     0.00  (2)
+  hall_petch                     0.33     0.67     0.44  (3)
+  hardness                       0.67     1.00     0.75  (3)
+  lattice_distortion             0.67     1.00     0.83  (3)
+  modulus                        1.00     1.00     1.00  (2)
+  ni_superalloy_comparison       0.50     0.50     0.50  (2)
+  oxidation                      0.67     1.00     0.83  (3)
+  phase_stability                1.00     1.00     1.00  (3)
+  secondary_phases               0.33     0.33     0.33  (3)
+  tensile_yield                  0.67     1.00     0.75  (3)
+
+  OVERALL                        0.62     0.79     0.68  (29)
+
+======================================================================
+PROBE BATTERY -- v2 (./heabert-base-pretrained_2/final)
+======================================================================
+
+  Category                      Hit@1    Hit@5      MRR  (n)
+  fatigue                        1.00     1.00     1.00  (2)
+  fracture_toughness             0.00     0.50     0.25  (2)
+  hall_petch                     1.00     1.00     1.00  (3)
+  hardness                       1.00     1.00     1.00  (3)
+  lattice_distortion             1.00     1.00     1.00  (3)
+  modulus                        1.00     1.00     1.00  (2)
+  ni_superalloy_comparison       0.50     0.50     0.50  (2)
+  oxidation                      0.67     1.00     0.83  (3)
+  phase_stability                1.00     1.00     1.00  (3)
+  secondary_phases               1.00     1.00     1.00  (3)
+  tensile_yield                  0.67     1.00     0.83  (3)
+
+  OVERALL                        0.83     0.93     0.88  (29)
+
+======================================================================
+PROBE BATTERY -- v3 (./heabert-base-pretrained_3/final)
+======================================================================
+
+  Category                      Hit@1    Hit@5      MRR  (n)
+  fatigue                        1.00     1.00     1.00  (2)
+  fracture_toughness             0.50     0.50     0.50  (2)
+  hall_petch                     1.00     1.00     1.00  (3)
+  hardness                       1.00     1.00     1.00  (3)
+  lattice_distortion             1.00     1.00     1.00  (3)
+  modulus                        1.00     1.00     1.00  (2)
+  ni_superalloy_comparison       0.50     0.50     0.50  (2)
+  oxidation                      1.00     1.00     1.00  (3)
+  phase_stability                1.00     1.00     1.00  (3)
+  secondary_phases               1.00     1.00     1.00  (3)
+  tensile_yield                  1.00     1.00     1.00  (3)
+
+  OVERALL                        0.93     0.93     0.93  (29)
+
+======================================================================
+PERPLEXITY COMPARISON on hea_corpus_groq_combined_2.jsonl
+======================================================================
+Using 3155 passages.
+
+  base       loss=1.5989 (+/-0.1561 across batches)  perplexity=4.95
+  v1         loss=1.1762 (+/-0.1375 across batches)  perplexity=3.24
+  v2         loss=0.7434 (+/-0.1132 across batches)  perplexity=2.10
+  v3         loss=0.5328 (+/-0.0946 across batches)  perplexity=1.70
+
+======================================================================
+SUMMARY
+======================================================================
+  Model         Hit@1    Hit@5      MRR   Perplexity
+  base           0.45     0.52     0.49         4.95
+  v1             0.62     0.79     0.68         3.24
+  v2             0.83     0.93     0.88         2.10
+  v3             0.93     0.93     0.93         1.70
