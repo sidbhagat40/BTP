@@ -41,6 +41,39 @@ quantity.
 Validation and test agree everywhere (largest deviation < 0.02 PPL), and the
 old ad-hoc CPT sits between the original and tuned models at both rates.
 
+## Corruption-rate sensitivity (validation-only, pre-declared)
+
+Full sweep p ∈ {0.05, 0.10, 0.15, 0.30, 0.50}; five mask seeds per point;
+0.15/0.30 columns from the pre-existing validation reviews, 0.05/0.10/0.50 from
+a declared validation-only sensitivity grid (`reports/summaries/*-sensitivity-grid`).
+No test access in either run.
+
+### Token-weighted loss / PPL by corruption rate
+
+| p | Base: orig → tuned (PPL) | Gain | Large: orig → tuned (PPL) | Gain |
+|---:|---|---:|---|---:|
+| 0.05 | 1.0488 → 0.6715 (2.85 → 1.96) | −35.97% | 0.8305 → 0.6004 (2.29 → 1.82) | −27.70% |
+| 0.10 | 1.0822 → 0.7179 (2.95 → 2.05) | −33.66% | 0.8877 → 0.6399 (2.43 → 1.90) | −27.92% |
+| 0.15 | 1.1654 → 0.7761 (3.21 → 2.17) | −33.41% | 0.9601 → 0.6908 (2.61 → 2.00) | −28.05% |
+| 0.30 | 1.5002 → 1.0028 (4.48 → 2.73) | −33.16% | 1.2424 → 0.8904 (3.46 → 2.44) | −28.33% |
+| 0.50 | 2.2398 → 1.5421 (9.39 → 4.67) | −31.15% | 1.8919 → 1.3776 (6.63 → 3.97) | −27.18% |
+
+Every point's 95% paired-paper bootstrap CI excludes zero, and per-point
+accuracy gaps behave identically (e.g., base top-1 accuracy +0.061 → +0.090
+from p=0.05 → 0.50). Reading:
+
+- The CPT gain is **stable across the entire corruption regime** (roughly
+  31–36% relative for base, 27–28.3% for large), from near-clean 5% masking to
+  harsh 50% masking — it does not depend on picking a favorable corruption
+  rate, and is largest under the lightest corruption.
+- Large is remarkably **flat** (27.2–28.3%) across the whole range; base's
+  relative gain decreases modestly as corruption intensifies (−36% → −31%),
+  consistent with a larger fraction of easy, predictable tokens under heavy
+  masking inflating the original model's baseline loss.
+- Raw losses are **not comparable across rates** (each rate is a different
+  task — the evaluator states this explicitly); only comparisons *at the same
+  rate*, or the relative reductions, are meaningful.
+
 ## Data
 
 | Split | Papers | Role |
