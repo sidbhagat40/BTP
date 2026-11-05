@@ -1,0 +1,9 @@
+# Synthetic-corpus experiments (modernbert_synthetic/): corpus generation
+# (generate_hea_corpus_groq.py) and the synthetic pretraining/testing stack.
+google-genai
+python-dotenv
+groq
+transformers>=4.48
+datasets
+accelerate
+torch
