@@ -184,6 +184,19 @@ disclosures: **`RESULTS.md` → "Downstream transfer"**. Summary JSONs live in
 `reports/summaries/down-aggregate/`; figures in `reports/figures/`. `eda/`
 additionally regenerates the CPT tuning/sensitivity/loss-curve figures.
 
+## Examples
+
+Small illustrative inputs (JSONL, committed in `examples/`):
+
+- `evaluation_probes.jsonl` — the 32 hand-authored diagnostic probes (general
+  English vs. materials/chemistry subpopulations; directional, not benchmarks).
+- `general_english_demo.jsonl`, `materials_demo.jsonl` — CPT evaluation demo rows.
+- `downstream_sample.jsonl` — 3 real test rows per downstream protocol
+  (primary-C, secondary-CT, exploratory-T) with the templated composition text,
+  the `target` (yield strength, MPa), and full provenance
+  (`formula`/`doi`/`year`/`test`/temperature/processing). Never train on these ids:
+  they are drawn from the frozen test splits (see `data/hea-prop-ys/manifest.json`).
+
 ## Tests
 
 ```bash
