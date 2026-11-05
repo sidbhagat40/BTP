@@ -1,0 +1,20 @@
+{
+  "files": {
+    "exploratory-T-test.jsonl": "fedc098188d2574dc8ccca89d8d9e967dab19a2b5a873bf6f2fc8df2fcf71169",
+    "exploratory-T-train.jsonl": "729d4b592fd7f2ddcae17417ee2e3b0a6597025d8cf1218ef120016479c20987",
+    "exploratory-T-validation.jsonl": "fc0d58193ece1524618fa84023981a06fdb25b6eed5a615586c8017d1ab5ceeb",
+    "primary-C-test.jsonl": "7824f5631d06a3086089e4ece6baf38f17c75ee3bd61f86dbebac4fd2bb634ec",
+    "primary-C-train.jsonl": "613cf1af05c3dcb78474a37bcc7acef677f4a5a2636aa15c5ad482ee384ab321",
+    "primary-C-validation.jsonl": "d08f3fa30adc6a0b9c1b019190e5832b9a7c25c9a3d76a69bd4f4f5d828de0d9",
+    "secondary-CT-test.jsonl": "ba4a4379bce876a9ec53bdb645ed33a111dc98b49145162cf04f1fdb3016604f",
+    "secondary-CT-train.jsonl": "f8225fa4889a0cc08d3a4b2efa64d507aa770273512d8e5f1ca4d20376ca4236",
+    "secondary-CT-validation.jsonl": "1593fe77685affd061a083d21058644723f5853d85218e874023116875f415af"
+  },
+  "source": {
+    "citation": "Borg et al., Sci Data 7:430 (2020), doi:10.1038/s41597-020-00768-9",
+    "file": "MPEA_dataset.csv",
+    "sha256": "c5504d93fd324d1be26cf814d0694ee9ee95578d68a0b38aba6813b939fa2c5d"
+  },
+  "split_rule": "sha256(composition)[:8] mod 100: <70 train, <85 validation, else test",
+  "template_version": "hea-prop-ys-template-v1"
+}

@@ -1,0 +1,47 @@
+{
+  "exploratory-T": {
+    "counts": {
+      "test": 31,
+      "train": 96,
+      "validation": 19
+    },
+    "rows": 146,
+    "target_mean": 552.5,
+    "target_sd": 325.1,
+    "unique_compositions_per_split": {
+      "test": 16,
+      "train": 63,
+      "validation": 12
+    }
+  },
+  "primary-C": {
+    "counts": {
+      "test": 110,
+      "train": 432,
+      "validation": 72
+    },
+    "rows": 614,
+    "target_mean": 999.4,
+    "target_sd": 597.5,
+    "unique_compositions_per_split": {
+      "test": 58,
+      "train": 223,
+      "validation": 34
+    }
+  },
+  "secondary-CT": {
+    "counts": {
+      "test": 141,
+      "train": 528,
+      "validation": 91
+    },
+    "rows": 760,
+    "target_mean": 913.6,
+    "target_sd": 582.9,
+    "unique_compositions_per_split": {
+      "test": 71,
+      "train": 280,
+      "validation": 44
+    }
+  }
+}
