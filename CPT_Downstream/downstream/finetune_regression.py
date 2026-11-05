@@ -1,4 +1,4 @@
-"""LoRA regression fine-tuning of a frozen CPT-pipeline model on the MPEA yield-strength task.
+﻿"""LoRA regression fine-tuning of a frozen CPT-pipeline model on the MPEA yield-strength task.
 
 One process = one (model-init, seed) run. Designed for a sweep driven by a loop:
   for arm in B1 B2 B3 L1 L2; for seed in 42 43 3704.
@@ -63,6 +63,8 @@ def main():
     ap.add_argument("--lr", type=float, default=5e-5)
     ap.add_argument("--epochs", type=int, default=20)
     ap.add_argument("--batch-size", type=int, default=8)
+    ap.add_argument("--gradient-accumulation", type=int, default=1,
+                    help="effective batch = batch-size x this; keep product equal across arms")
     ap.add_argument("--lora-r", type=int, default=16)
     ap.add_argument("--lora-alpha", type=int, default=32)
     ap.add_argument("--lora-dropout", type=float, default=0.1)
@@ -126,6 +128,7 @@ def main():
         output_dir=os.path.join(args.output_dir, "CHECKPOINTS"),
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=16,
+        gradient_accumulation_steps=args.gradient_accumulation,
         num_train_epochs=args.epochs,
         learning_rate=args.lr,
         lr_scheduler_type="cosine",
@@ -174,7 +177,7 @@ def main():
     results["model_identity"] = identity
     results["hyperparameters"] = {"lora_r": args.lora_r, "lora_alpha": args.lora_alpha,
                                   "lora_dropout": args.lora_dropout, "weight_decay": args.weight_decay,
-                                  "warmup_ratio": args.warmup_ratio, "batch_size": args.batch_size,
+                                  "warmup_ratio": args.warmup_ratio, "batch_size": args.batch_size, "gradient_accumulation": args.gradient_accumulation,
                                   "max_length": args.max_length, "patience": args.patience}
 
     seed_pred_path = os.path.join(args.output_dir, "test_predictions.json")
@@ -191,3 +194,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
