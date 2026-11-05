@@ -1,5 +1,17 @@
+# Core deep-learning stack (matches the provenance-logged versions on the server).
 # Install a CUDA-enabled PyTorch wheel separately on the GPU server (see README).
 torch>=2.6,<3
 transformers==4.57.6
 datasets==4.4.1
 accelerate==1.11.0
+tokenizers==0.22.2
+
+# Parameter-efficient fine-tuning for the downstream LoRA regression (CPT_Downstream/downstream/).
+peft>=0.15,<0.18
+
+# Numerics / utilities used across prepare, masking, training, evaluation, statistics.
+numpy>=1.26,<3
+pyyaml>=6
+tqdm>=4.66
+safetensors>=0.4
+huggingface-hub>=0.34
