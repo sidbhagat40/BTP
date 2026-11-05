@@ -77,7 +77,7 @@ from p=0.05 → 0.50). Reading:
 ## Downstream transfer (yield-strength regression, LoRA SFT)
 
 **Task and data.** Yield strength (MPa) regression from templated composition
-text on the Citrine MPEA dataset (Borges et al., *Sci Data* 7:159, 2020).
+text on the Citrine MPEA dataset (Borg et al., *Sci Data* 7:430, 2020).
 Formulas parsed by `hea_cpt.alloys.normalized_composition` (0 failures across
 all rows used). Three pre-declared protocols with **composition-disjoint**
 splits (`sha256(composition)[:8] mod 100`: <70 train, <85 val, else test):
