@@ -1,4 +1,4 @@
-﻿"""LoRA regression fine-tuning of a frozen CPT-pipeline model on the MPEA yield-strength task.
+"""LoRA regression fine-tuning of a frozen CPT-pipeline model on the MPEA yield-strength task.
 
 One process = one (model-init, seed) run. Designed for a sweep driven by a loop:
   for arm in B1 B2 B3 L1 L2; for seed in 42 43 3704.
