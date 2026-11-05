@@ -158,6 +158,32 @@ Use `--eval-split validation` for a full validation comparison instead. An evalu
 - Keep an original-model, no-CPT downstream baseline for **each** model size, with the same labels, data splits and fine-tuning protocol. That comparison establishes the benefit of CPT. A general-domain held-out set can additionally measure forgetting.
 - Check literature licensing/data-use permissions; do not publish full-text papers without appropriate rights.
 
+## Downstream fine-tuning (yield-strength SFT)
+
+The CPT checkpoints are compared on a supervised task: yield strength (MPa)
+regression from templated composition text, Citrine MPEA dataset (Borges et
+al., *Sci Data* 2020), LoRA (r=16, α=32) + regression head under an identical
+harness for all arms.
+
+```bash
+# 1. Build the composition-disjoint dataset (deterministic; manifest + split_report frozen)
+python -m downstream.build_property_dataset --csv <MPEA_dataset.csv> --output-dir data/hea-prop-ys
+
+# 2. Fine-tune one arm/seed/protocol (see RESULTS.md for the full 45-run matrix)
+python -m downstream.finetune_regression --model-path <arm checkpoint or hub id> \
+  --arm <B1|B2|B3|L1|L2> --seed 42 --data-dir data/hea-prop-ys --role-prefix primary-C \
+  --output-dir outputs/down-primary-C-<ARM>-s42
+
+# 3. Aggregate seed means / paired-bootstrap CIs, then plot
+python -m downstream.aggregate --root outputs
+python -m eda.plot_downstream_eda --root outputs --out reports/figures
+```
+
+Protocols, per-arm numbers, pairwise CIs with seed-stability flags, and all
+disclosures: **`RESULTS.md` → "Downstream transfer"**. Summary JSONs live in
+`reports/summaries/down-aggregate/`; figures in `reports/figures/`. `eda/`
+additionally regenerates the CPT tuning/sensitivity/loss-curve figures.
+
 ## Tests
 
 ```bash
