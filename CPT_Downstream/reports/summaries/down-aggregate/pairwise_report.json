@@ -1,0 +1,344 @@
+{
+  "primary-C: B3 vs B1 (tuned CPT vs original base)": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -37.27939786044034,
+      -16.024472045898438,
+      10.94283086603338
+    ],
+    "mae_gap_point_seedmean": -14.120346346768466,
+    "mae_gap_ci95_combined": [
+      -19.68862786852519,
+      -8.966484995015472
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "primary-C: B3 vs B2 (tuned CPT vs old ad-hoc CPT (tuning-study value))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -49.34236672141335,
+      -50.40386186079545,
+      -58.79120150479403
+    ],
+    "mae_gap_point_seedmean": -52.845810029000944,
+    "mae_gap_ci95_combined": [
+      -59.25286664187113,
+      -45.65758828125003
+    ],
+    "seed_direction_consistent": true,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "primary-C: B2 vs B1 (old CPT vs original base (was CPT helping at all))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      12.062968860973012,
+      34.37938981489702,
+      69.73403237082742
+    ],
+    "mae_gap_point_seedmean": 38.72546368223248,
+    "mae_gap_ci95_combined": [
+      32.307727838261926,
+      46.607061104329425
+    ],
+    "seed_direction_consistent": true,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "primary-C: L2 vs L1 (tuned CPT large vs original large)": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      25.509365567294033,
+      20.9290996204723,
+      30.044716574928977
+    ],
+    "mae_gap_point_seedmean": 25.49439392089844,
+    "mae_gap_ci95_combined": [
+      21.76428627560934,
+      30.49207455507914
+    ],
+    "seed_direction_consistent": true,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "primary-C: B3 vs L2 (base tuned vs large tuned (capacity))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -17.02429726340554,
+      -19.17870400168679,
+      33.7562178178267
+    ],
+    "mae_gap_point_seedmean": -0.815594482421875,
+    "mae_gap_ci95_combined": [
+      -4.56049311726888,
+      2.9696830005645722
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "primary-C: L1 vs B1 (original large vs original base (capacity))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -45.76446616432884,
+      -17.77486766468395,
+      -52.8581035267223
+    ],
+    "mae_gap_point_seedmean": -38.79914578524503,
+    "mae_gap_ci95_combined": [
+      -43.4077761516571,
+      -33.99249059613546
+    ],
+    "seed_direction_consistent": true,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "secondary-CT: B3 vs B1 (tuned CPT vs original base)": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -10.11616353785738,
+      -27.501778244126772,
+      -22.13421319190492
+    ],
+    "mae_gap_point_seedmean": -19.91738499129636,
+    "mae_gap_ci95_combined": [
+      -25.20207005564372,
+      -15.949805824279785
+    ],
+    "seed_direction_consistent": true,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "secondary-CT: B3 vs B2 (tuned CPT vs old ad-hoc CPT (tuning-study value))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -10.726076383117244,
+      -18.000050862630207,
+      1.766315000277039
+    ],
+    "mae_gap_point_seedmean": -8.98660408182347,
+    "mae_gap_ci95_combined": [
+      -12.98188494618734,
+      -5.196419448852539
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "secondary-CT: B2 vs B1 (old CPT vs original base (was CPT helping at all))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      0.6099128452598626,
+      -9.501727381496565,
+      -23.90052819218196
+    ],
+    "mae_gap_point_seedmean": -10.930780909472887,
+    "mae_gap_ci95_combined": [
+      -16.55937640126546,
+      -6.190375322977697
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "secondary-CT: L2 vs L1 (tuned CPT large vs original large)": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -11.611123159422096,
+      1.8018281544353945,
+      -23.558457394863698
+    ],
+    "mae_gap_point_seedmean": -11.122584133283466,
+    "mae_gap_ci95_combined": [
+      -14.828790873209634,
+      -7.33296839650472
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "secondary-CT: B3 vs L2 (base tuned vs large tuned (capacity))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      5.3472567078069595,
+      -12.27759092073914,
+      21.23034408244681
+    ],
+    "mae_gap_point_seedmean": 4.766669956504876,
+    "mae_gap_ci95_combined": [
+      -0.00435830434163384,
+      8.977802052815756
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "secondary-CT: L1 vs B1 (original large vs original base (capacity))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -3.8522970862422428,
+      -17.026015477823027,
+      -19.80609987948803
+    ],
+    "mae_gap_point_seedmean": -13.561470814517767,
+    "mae_gap_ci95_combined": [
+      -18.71142749176025,
+      -8.670809738159182
+    ],
+    "seed_direction_consistent": true,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "exploratory-T: B3 vs B1 (tuned CPT vs original base)": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -25.087487005418346,
+      -16.446517452116936,
+      0.8771037440146169
+    ],
+    "mae_gap_point_seedmean": -13.552300237840221,
+    "mae_gap_ci95_combined": [
+      -15.284443786621093,
+      -12.046356449127199
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "exploratory-T: B3 vs B2 (tuned CPT vs old ad-hoc CPT (tuning-study value))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -20.397289645287298,
+      7.733611076108871,
+      6.361964071950605
+    ],
+    "mae_gap_point_seedmean": -2.100571499075941,
+    "mae_gap_ci95_combined": [
+      -2.8508994038899735,
+      -1.469563013712565
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "exploratory-T: B2 vs B1 (old CPT vs original base (was CPT helping at all))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -4.690197360131048,
+      -24.180128528225808,
+      -5.484860327935988
+    ],
+    "mae_gap_point_seedmean": -11.451728738764281,
+    "mae_gap_ci95_combined": [
+      -13.566362536112466,
+      -9.867835876464845
+    ],
+    "seed_direction_consistent": true,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "exploratory-T: L2 vs L1 (tuned CPT large vs original large)": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      34.74313452935988,
+      -14.292591710244455,
+      0.9749125819052419
+    ],
+    "mae_gap_point_seedmean": 7.141818467006888,
+    "mae_gap_ci95_combined": [
+      5.999889625549318,
+      8.542082514444985
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "exploratory-T: B3 vs L2 (base tuned vs large tuned (capacity))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -25.7540765577747,
+      34.40419154013357,
+      -1.6137488580519153
+    ],
+    "mae_gap_point_seedmean": 2.345455374768985,
+    "mae_gap_ci95_combined": [
+      0.44888135528564493,
+      4.305370465596517
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  },
+  "exploratory-T: L1 vs B1 (original large vs original base (capacity))": {
+    "seeds": [
+      42,
+      43,
+      3704
+    ],
+    "mae_gap_per_seed_point": [
+      -34.07654497700353,
+      -36.55811728200605,
+      1.5159400201612903
+    ],
+    "mae_gap_point_seedmean": -23.039574079616095,
+    "mae_gap_ci95_combined": [
+      -25.16402297465006,
+      -20.520035608927408
+    ],
+    "seed_direction_consistent": false,
+    "note": "gap > 0 means the SECOND arm has lower MAE; row-bootstrap CI holds seeds fixed"
+  }
+}
