@@ -1,6 +1,6 @@
 # HEA ModernBERT: continued pretraining (CPT)
 
-**Extended evaluation:** see [`EVALUATION.md`](EVALUATION.md) for exact token-weighted metrics, paper-level confidence intervals, masking sensitivity/training ablations, 32 varied scientific/English probes, and general-language diagnostics.
+**Extended evaluation:** see [`EVALUATION.md`](EVALUATION.md) for exact token-weighted metrics, paper-level confidence intervals, masking sensitivity/training ablations, 84 varied scientific/English probes, and general-language diagnostics.
 
 **Hyperparameter tuning:** see [`TUNING.md`](TUNING.md) for a resumable, validation-only search over learning rate, training masking, weight decay and warmup, followed by full-length confirmation and optional training-seed repetitions.
 
@@ -188,8 +188,10 @@ additionally regenerates the CPT tuning/sensitivity/loss-curve figures.
 
 Small illustrative inputs (JSONL, committed in `examples/`):
 
-- `evaluation_probes.jsonl` — the 32 hand-authored diagnostic probes (general
-  English vs. materials/chemistry subpopulations; directional, not benchmarks).
+- `evaluation_probes.jsonl` — the 84 hand-authored diagnostic probes (scientific
+  (materials + non-materials), notation/integrity, units, and general-English
+  subpopulations; directional, not benchmarks). Formula pairs are cross-checked
+  against a deterministic ratio checker in `hea_cpt/alloys.py`.
 - `general_english_demo.jsonl`, `materials_demo.jsonl` — CPT evaluation demo rows.
 - `downstream_sample.jsonl` — 3 real test rows per downstream protocol
   (primary-C, secondary-CT, exploratory-T) with the templated composition text,

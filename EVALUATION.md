@@ -16,7 +16,7 @@ GPU_INDEX=0 nohup bash run_evaluation.sh > evaluation_suite.log 2>&1 &
 tail -f evaluation_suite.log
 ```
 
-This runs a smoke test, full validation, validation-only masking sensitivity, the prespecified test protocol, both hand-authored passage diagnostics, and all 32 probes. It loads the models sequentially, uses batch size 1, and never retrains or automatically selects new model settings. It performs many evaluation passes; budget GPU time accordingly. If the process fails, completed per-stage reports remain available. Run individual remaining commands below into fresh directories rather than overwriting earlier reports.
+This runs a smoke test, full validation, validation-only masking sensitivity, the prespecified test protocol, both hand-authored passage diagnostics, and all 84 probes. It loads the models sequentially, uses batch size 1, and never retrains or automatically selects new model settings. It performs many evaluation passes; budget GPU time accordingly. If the process fails, completed per-stage reports remain available. Run individual remaining commands below into fresh directories rather than overwriting earlier reports.
 
 Defaults: original `answerdotai/ModernBERT-base`, adapted `outputs/base-full-cpt/final`, output `outputs/base-evaluation-suite`. Override with environment variables `ORIGINAL_MODEL`, `CPT_MODEL`, and `EVAL_OUTPUT_DIR`. For example, `ORIGINAL_MODEL=models/ModernBERT-base GPU_INDEX=0 bash run_evaluation.sh` uses a locally downloaded original checkpoint. The Bash launcher is intended for your Linux server; Python evaluation paths were integration-tested offline on tiny local models.
 
@@ -121,18 +121,23 @@ CUDA_VISIBLE_DEVICES=0 python -m hea_cpt.probes \
 
 Read **`outputs/base-probe-comparison/comparison.md`**. It contains every probe, expected answer, explanation, each model's full candidate ranking, and unrestricted top-five single-subword predictions. `comparison.json` contains the underlying scores and category counts. Do not cherry-pick only examples CPT wins.
 
-The 32 examples in `examples/evaluation_probes.jsonl` cover:
+The 84 examples in `examples/evaluation_probes.jsonl` cover eight categories with at least ten probes each:
 
-- Cantor-alloy elements, refractory elements, ideal configurational entropy and the limits of entropy-based phase claims.
-- FCC/BCC/HCP, XRD, loading modes, hardness versus strength, unit conversions and composition basis.
-- **Same composition:** `CoCrFeMnNi` / `NiMnFeCrCo`; `Fe50Ni50` / `FeNi`; `Al0.5CoCrFeNi` / `AlCo2Cr2Fe2Ni2`.
-- **Different composition:** `AlCoCrFeNi` / `Al0.5CoCrFeNi`; replacing Ni with Cu; ternary versus five-element compositions.
+- **HEA knowledge (11):** Cantor-alloy elements and structure (FCC), refractory Senkov-type structures (BCC), the aluminium-driven BCC trend, principal-element count, ideal configurational entropy (R ln 5), interstitial solutes, and the limits of entropy-based phase claims.
+- **Alloy equivalence (11):** order permutations (`MoNbTaVW` / `WVTaNbMo`), integer and decimal rescaling (`Al0.75CoFeNi` / `Al3Co4Fe4Ni4`), atomic-percent spellings, the eutectic `AlCoCrFeNi2.1` difference, substitution and missing-element traps, plus an identity control.
+- **Alloy notation (10):** alias names (Cantor alloy), hyphenated element lists, parenthesized group algebra (`(Hf0.2Zr0.2Ta0.2Nb0.2Ti0.2)C`, `(Mg0.2Co0.2Ni0.2Cu0.2Zn0.2)O`), substoichiometric carbon, in-group element swaps, and wt%/at% basis handling (Invar, Ti-6Al-4V) as hand annotations.
+- **Materials terminology (10):** FCC/BCC/HCP, XRD/SEM/TEM/EDS/DSC abbreviations, Vickers `HV`, and Bragg-angle reasoning.
+- **Materials reasoning (10):** loading modes, hardness versus strength, strain-rate, grain-size and solute-strengthening effects, thermal softening, and property-independence caveats.
+- **Units and numerical controls (10):** GPa/MPa in both directions, Celsius/kelvin in both directions, atomic-fraction/percent in both directions, percentage closure, and the MPa = N/mm² identity.
+- **Scientific reasoning, non-materials (10):** ideal-gas laws, net force, density, condensation, heat flow, force-unit and Archimedes principles, plus an isotope molar-mass negative control.
+- **General English (12):** tense agreement, irregular plurals, comparatives and superlatives, synonyms, contextual completion, negation, entailment and string-order controls.
+- **Same composition (parser-checked):** `CoCrFeMnNi` / `NiMnFeCrCo`; `Fe50Ni50` / `FeNi`; `Al0.5CoCrFeNi` / `AlCo2Cr2Fe2Ni2`.
+- **Different composition (parser-checked):** `AlCoCrFeNi` / `Al0.5CoCrFeNi`; replacing Ni with Cu; ternary versus five-element compositions.
 - Identical nominal composition does not establish identical processing, phases or properties. Exact yield strength cannot be determined from a formula alone.
-- General-English grammar, irregular plurals, synonyms, contextual completion, negation, entailment and string-order controls.
 
 ### What "are these alloys the same?" means
 
-The included formula comparisons are explicitly about **normalized atomic ratios**, assuming omitted coefficients equal one. An independent deterministic checker parses simple element/decimal formulas with exact rational arithmetic. It is the composition reference, **not** a result produced by either neural model. It does not handle weight-percent conversion, aliases, parentheses or processing state. Do not interpret it as determining whether two specimens are the same material.
+The included formula comparisons are explicitly about **normalized atomic ratios**, assuming omitted coefficients equal one. An independent deterministic checker parses element/decimal formulas including parenthesized group algebra with exact rational arithmetic. It is the composition reference, **not** a result produced by either neural model. It does not handle weight-percent conversion, aliases or processing state. Do not interpret it as determining whether two specimens are the same material.
 
 ModernBERT is an encoder MLM, not a chat model. These examples are controlled cloze probes, not open-ended scientific answers. For example:
 
