@@ -18,10 +18,16 @@ HAS_DEPENDENCIES = all(importlib.util.find_spec(name) for name in ("torch", "tra
 class ReferenceTests(unittest.TestCase):
     def test_composition_equivalence_and_limits(self):
         for a, b in (("CoCrFeMnNi", "NiMnFeCrCo"), ("Fe50Ni50", "FeNi"),
-                     ("Al0.5CoCrFeNi", "AlCo2Cr2Fe2Ni2")):
+                     ("Al0.5CoCrFeNi", "AlCo2Cr2Fe2Ni2"),
+                     ("(Hf0.2Zr0.2Ta0.2Nb0.2Ti0.2)C", "Hf0.2Zr0.2Ta0.2Nb0.2Ti0.2C1"),
+                     ("Al0.25Ni0.5(MnCo0.2)0.1", "Al0.25Ni0.5Mn0.1Co0.02")):
             self.assertTrue(compare_compositions(a, b)["same_normalized_composition"])
+        for a, b in (("(HfZrTaNbTi)C", "(HfZrTaNbTi)C0.5"),
+                     ("(Hf0.5Zr0.5TaNbTi)C", "(Hf0.4Zr0.6TaNbTi)C")):
+            self.assertFalse(compare_compositions(a, b)["same_normalized_composition"])
         self.assertFalse(compare_compositions("AlCoCrFeNi", "Al0.5CoCrFeNi")["same_normalized_composition"])
-        for invalid in ("XYZ", "Fe(NiCo)", "Fe50wt%Ni50", "Fe0Ni", "", "feNi"):
+        for invalid in ("XYZ", "Fe50wt%Ni50", "Fe0Ni", "", "feNi",
+                        "Fe)", "(FeCo", "Fe()", "(FeCo)0"):
             with self.assertRaises(ValueError):
                 normalized_composition(invalid)
 
