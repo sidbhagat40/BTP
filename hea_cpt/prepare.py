@@ -11,6 +11,12 @@ from .masking import mask_example, replacement_vocabulary
 
 
 def generate_chunks(path, tokenizer, max_length, split, seed, mlm_probability, source_sha256):
+    """Yield mask-ready chunks for every paper in one split (a datasets generator).
+
+    Train rows keep fresh-mask inputs plus a special-tokens mask; evaluation
+    rows get their masks drawn once from a per-document/chunk seed and saved
+    as labels, so evaluation masks are frozen.
+    """
     # The source hash is also part of Dataset.from_generator's cache fingerprint.
     del source_sha256
     vocabulary = replacement_vocabulary(tokenizer)
@@ -40,6 +46,12 @@ def generate_chunks(path, tokenizer, max_length, split, seed, mlm_probability, s
 
 def prepare_dataset(data_dir, output_dir, tokenizer_name, revision="main", max_length=512,
                     mlm_probability=0.15, seed=42):
+    """Audit the corpus, tokenize all splits, and write dataset + manifest.
+
+    Writes audit.json, the saved DatasetDict, the tokenizer copy, and a
+    manifest.json recording hashes, statistics and the frozen-mask protocol.
+    Raises instead of silently accepting a failed audit or a bad tokenizer.
+    """
     from datasets import Dataset, DatasetDict, Features, List, Value
     from transformers import AutoTokenizer
 
@@ -92,6 +104,7 @@ def prepare_dataset(data_dir, output_dir, tokenizer_name, revision="main", max_l
 
 
 def main():
+    """CLI entry point for `python -m hea_cpt.prepare`."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", default=".")
     parser.add_argument("--output-dir", default="artifacts/hea-512")

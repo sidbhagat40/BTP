@@ -9,6 +9,7 @@ class FinalEvaluationCallback(TrainerCallback):
     """Include the budget endpoint even when it is not a scheduled save step."""
 
     def on_step_end(self, args, state, control, **kwargs):
+        """Force evaluation and checkpoint save at the final training step."""
         if state.global_step >= state.max_steps:
             control.should_evaluate = True
             control.should_save = True
@@ -24,6 +25,7 @@ class TokenWeightedTrainer(Trainer):
     """
 
     def prediction_step(self, model, inputs, prediction_loss_only, ignore_keys=None):
+        """Accumulate loss × labelled-token count; refuse NaN/empty batches."""
         loss, logits, labels = super().prediction_step(
             model, inputs, prediction_loss_only, ignore_keys=ignore_keys,
         )
@@ -36,6 +38,7 @@ class TokenWeightedTrainer(Trainer):
 
     def evaluation_loop(self, dataloader, description, prediction_loss_only=None,
                         ignore_keys=None, metric_key_prefix="eval"):
+        """Replace the per-batch mean with the exact token-weighted validation loss."""
         if self.args.world_size != 1:
             raise ValueError("TokenWeightedTrainer currently supports a single device only.")
         self._validation_nll, self._validation_targets = 0.0, 0

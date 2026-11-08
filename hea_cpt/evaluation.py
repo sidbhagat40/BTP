@@ -11,6 +11,11 @@ from .masking import mask_example, replacement_vocabulary
 
 
 def original_chunks(path, tokenizer, max_length, source_sha256, max_papers=None):
+    """Yield chunk dictionaries for every paper; masks are NOT drawn here yet.
+
+    Each row carries paper_id/source_line/chunk_id provenance plus unmasked
+    input ids and a special-tokens mask; evaluate_condition assigns masks.
+    """
     del source_sha256  # Included in the datasets generator cache key.
     special_ids = set(tokenizer.all_special_ids)
     for paper_id, (line, text) in enumerate(iter_documents(path)):
@@ -30,12 +35,21 @@ def original_chunks(path, tokenizer, max_length, source_sha256, max_papers=None)
 
 
 class EvaluationCollator:
+    """Apply frozen evaluation masks and pair each batch with per-chunk metadata.
+
+    Masks come from a deterministic per-(seed, split, paper, chunk) RNG so a
+    model pair always sees byte-identical corruption; a SHA-256 fingerprint
+    of every masked example is accumulated for corruption equality checks.
+    """
+
     def __init__(self, tokenizer, probability, seed, split):
+        """Store tokenizer, masking probability and the fingerprint namespace."""
         self.tokenizer, self.probability = tokenizer, probability
         self.seed, self.split = seed, split
         self.vocabulary = replacement_vocabulary(tokenizer)
 
     def __call__(self, rows):
+        """Collate a batch, returning (padded tensors with labels, metadata list)."""
         import torch
 
         inputs, targets, metadata = [], [], []
@@ -61,6 +75,7 @@ class EvaluationCollator:
 
 
 def autocast_context(device, precision):
+    """Return an active autocast context for CUDA bf16/fp16, or a no-op in fp32/CPU."""
     import torch
 
     return (torch.autocast("cuda", dtype=torch.bfloat16 if precision == "bf16" else torch.float16)
@@ -68,6 +83,7 @@ def autocast_context(device, precision):
 
 
 def metrics_from_papers(papers):
+    """Aggregate per-paper counters into the exact token-weighted metric set."""
     count = sum(row["targets"] for row in papers)
     if not count:
         raise ValueError("No labelled text tokens were evaluated.")
@@ -88,6 +104,12 @@ def metrics_from_papers(papers):
 
 
 def evaluate_condition(model, tokenizer, chunks, probability, seed, split, device, precision, batch_size):
+    """Evaluate one model under one (probability, seed) condition.
+
+    Streams masked batches in inference mode, accumulates per-paper NLL/top1/
+    top5 counters, refuses non-finite losses, and returns per-paper records
+    plus aggregate metrics and a corruption fingerprint.
+    """
     import torch
     import torch.nn.functional as functional
     from torch.utils.data import DataLoader
@@ -166,6 +188,7 @@ def paired_bootstrap(original_runs, adapted_runs, iterations=2000, seed=2026):
         macro_samples.append((loss_delta / counts)[ids].mean(axis=1))
 
     def interval(samples):
+        """Percentile (2.5%, 97.5%) interval of the bootstrap draws."""
         return np.quantile(np.mean(samples, axis=0), [0.025, 0.975]).tolist()
 
     return {
@@ -181,6 +204,7 @@ def paired_bootstrap(original_runs, adapted_runs, iterations=2000, seed=2026):
 
 
 def summarize_runs(runs):
+    """Mean and SD-across-mask-seeds for each headline metric over seed runs."""
     keys = ("token_weighted_mlm_loss", "masked_token_accuracy", "masked_token_top5_accuracy",
             "paper_macro_mlm_loss", "mask_replaced_top1_accuracy")
     return {key: {"mean": statistics.mean(values),
@@ -190,6 +214,7 @@ def summarize_runs(runs):
 
 
 def write_evaluation_report(path, summary):
+    """Render the Markdown report from one summary.json structure."""
     from pathlib import Path
 
     lines = ["# Paired MLM evaluation", "", f"Split: {summary['split']}",

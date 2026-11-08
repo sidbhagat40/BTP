@@ -18,16 +18,19 @@ SPLITS = ("train", "validation", "test")
 
 
 def clean_text(text):
+    """Normalize Unicode and line endings while preserving formulas, case and units."""
     # Preserve chemical formulas, case, Unicode symbols, units and section boundaries.
     return unicodedata.normalize("NFC", text).replace("\x00", "").replace("\r\n", "\n").strip()
 
 
 def text_digest(text):
+    """SHA-256 of the whitespace/case-normalized text, for exact-duplicate checks."""
     normalized = " ".join(clean_text(text).split()).casefold()
     return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
 
 
 def title_key(text):
+    """Extract a normalized title key from a leading `title:` line, or None."""
     first = text.strip().splitlines()[0]
     if not first.casefold().startswith("title:"):
         return None
@@ -35,6 +38,7 @@ def title_key(text):
 
 
 def iter_documents(path):
+    """Yield (line_number, cleaned_text) for each JSONL row, validating as we go."""
     with Path(path).open(encoding="utf-8-sig") as handle:
         for line_number, line in enumerate(handle, 1):
             if not line.strip():
@@ -52,6 +56,11 @@ def iter_documents(path):
 
 
 def audit_corpus(data_dir):
+    """Audit all three splits and fail on duplicates or cross-split title leakage.
+
+    Returns a report dict with per-split statistics and SHA-256 hashes, exact
+    duplicate groups, cross-split title groups, and an overall `passed` flag.
+    """
     texts, titles = defaultdict(list), defaultdict(list)
     report = {"splits": {}, "errors": [], "warnings": []}
     for split in SPLITS:
@@ -108,6 +117,7 @@ def audit_corpus(data_dir):
 
 
 def main():
+    """CLI entry point: write the audit report, exit 0 only if it passed."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", default=".")
     parser.add_argument("--output", default="reports/corpus_audit.json")

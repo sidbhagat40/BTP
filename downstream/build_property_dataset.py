@@ -48,6 +48,7 @@ def composition_text(comp):
 
 
 def input_text(formula, comp, test_type, temp_c, processing):
+    """Render the fixed-line model input text for one alloy row."""
     proc = (processing or "").strip().upper() or "unspecified"
     lines = [
         f"Multi-principal element alloy, target: yield strength in MPa.",
@@ -60,6 +61,7 @@ def input_text(formula, comp, test_type, temp_c, processing):
 
 
 def sha256_of_file(path):
+    """Stream a file in 1 MiB blocks and return its SHA-256 hex digest."""
     h = hashlib.sha256()
     with open(path, "rb") as fh:
         for block in iter(lambda: fh.read(1 << 20), b""):
@@ -68,6 +70,7 @@ def sha256_of_file(path):
 
 
 def bucket_for_composition(comp_string):
+    """Deterministic composition-disjoint split (<70 train, <85 validation, else test)."""
     h = int(hashlib.sha256(comp_string.encode("utf-8")).hexdigest()[:8], 16) % 100
     if h < 70:
         return "train"
@@ -143,6 +146,7 @@ def write_dataset(rows, role, type_tag, output_dir, manifest, report):
 
 
 def main():
+    """CLI: build compression, tension and combined split files plus manifest/report."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", required=True)
     ap.add_argument("--output-dir", required=True)

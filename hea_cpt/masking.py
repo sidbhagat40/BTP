@@ -4,11 +4,18 @@ import random
 
 
 def replacement_vocabulary(tokenizer):
+    """Non-special token IDs allowed as random replacements (the 10% branch)."""
     special = set(tokenizer.all_special_ids)
     return sorted(set(tokenizer.get_vocab().values()) - special)
 
 
 def mask_example(input_ids, special_tokens_mask, mask_token_id, vocabulary, probability, rng):
+    """Mask one chunk with 80/10/10 corruption; return (masked_ids, labels).
+
+    Labels are -100 everywhere except selected positions; a chunk where the
+    probability selected nothing is forced to mask at least one token so the
+    loss can never be the all-ignored NaN case.
+    """
     if not 0 < probability < 1:
         raise ValueError("Masking probability must be between 0 and 1.")
     eligible = [i for i, special in enumerate(special_tokens_mask) if not special]
@@ -34,11 +41,13 @@ class MLMCollator:
     """Use saved labels for evaluation; draw new masks for unlabelled training rows."""
 
     def __init__(self, tokenizer, probability):
+        """Store the tokenizer and precompute the replacement vocabulary."""
         self.tokenizer = tokenizer
         self.probability = probability
         self.vocabulary = replacement_vocabulary(tokenizer)
 
     def __call__(self, features):
+        """Build a batch: saved labels for frozen eval masks, fresh masks for training rows."""
         import torch
 
         inputs, labels = [], []

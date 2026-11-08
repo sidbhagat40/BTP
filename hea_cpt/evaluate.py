@@ -10,6 +10,12 @@ from .train import choose_precision
 
 
 def load_evaluation_model(path, tokenizer, revision=None, offline=False, max_length=512):
+    """Load eval-only MLM model matching our tokenizer; configure for inference.
+
+    Enforces ModernBERT with a long-enough context window and a vocab/token
+    map identical to the prepared tokenizer; disables reference compile and
+    enables sparse prediction.
+    """
     from transformers import AutoConfig, AutoModelForMaskedLM, AutoTokenizer
 
     revision = None if Path(path).is_dir() else revision
@@ -28,6 +34,12 @@ def load_evaluation_model(path, tokenizer, revision=None, offline=False, max_len
 
 
 def main():
+    """CLI entry point: run the paired original-vs-CPT evaluation and write reports.
+
+    Guards the protocol (validation-only sweeps, positive parameters, corpus
+    hash agreement), evaluates both models per probability/seed, and writes
+    per-run JSON, summary.json, report.md and summary.csv.
+    """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--original-model", default="answerdotai/ModernBERT-base")
     parser.add_argument("--original-revision", default="main")

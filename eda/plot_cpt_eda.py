@@ -43,11 +43,13 @@ MODELS_DIR_DEFAULTS = {
 
 
 def load(path):
+    """Read one JSON report file."""
     with open(path, encoding="utf-8") as fh:
         return json.load(fh)
 
 
 def comparisons_by_mask(path):
+    """Map masking probability -> comparison dict from a sensitivity summary (or {})."""
     if not path or not os.path.exists(path):
         return {}
     d = load(path)
@@ -55,6 +57,7 @@ def comparisons_by_mask(path):
 
 
 def fig_tuning(ax_l, ax_m, tuning_rows, chosen, size):
+    """Draw loss-vs-LR and loss-vs-training-mask panels of the tuning study."""
     stages = sorted({r["stage"] for r in tuning_rows})
     stage_colors = dict(zip(stages, __import__("matplotlib").pyplot.cm.tab10(np.linspace(0.0, 1.0, len(stages)))))
     mask_colors = {m: c for m, c in zip(sorted({r["training_mlm_probability"] for r in tuning_rows}),
@@ -91,6 +94,7 @@ def fig_tuning(ax_l, ax_m, tuning_rows, chosen, size):
 
 
 def fig_sensitivity(ax, comps, title):
+    """Draw original-vs-CPT loss and accuracy across masking probabilities."""
     masks = sorted(comps)
     x = np.arange(len(masks))
     series = [("original", "#4477aa"), ("cpt", "#228833")]
@@ -146,6 +150,7 @@ def fig_test_review(axes, dirs, title):
 
 
 def main():
+    """Regenerate the CPT report figures from committed reports/summaries JSONs."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--summaries", default=os.path.join(os.path.dirname(__file__), "..", "reports", "summaries"))
     ap.add_argument("--out", required=True)

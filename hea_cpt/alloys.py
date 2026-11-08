@@ -55,6 +55,11 @@ def normalized_composition(formula):
 
 
 def compare_compositions(first, second):
+    """Compare two formulas for identical normalized atomic composition.
+
+    Returns a dict with the boolean verdict, each side's atomic fractions as
+    exact-arithmetic strings, and the stated assumptions and limitation.
+    """
     a, b = normalized_composition(first), normalized_composition(second)
     return {"same_normalized_composition": a == b,
             "first_atomic_fractions": {element: str(value) for element, value in a.items()},

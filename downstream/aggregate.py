@@ -42,6 +42,7 @@ METRICS = ("mae", "rmse", "r2")
 
 
 def load_runs(root):
+    """Collect per-run results.json / test_predictions.json by protocol, arm, seed."""
     runs = defaultdict(dict)  # protocol -> arm -> seed -> results
     preds = defaultdict(dict)  # protocol -> arm -> seed -> per-row arrays
     for dirpath, _dirs, files in os.walk(root):
@@ -63,12 +64,14 @@ def load_runs(root):
 
 
 def fmt_row(res, split):
+    """Extract (mae, rmse, r2, baseline_mae) from one run's per-split block."""
     m = res["per_split"][split]
     b = res["per_split"][f"baseline_mean_predictor_{split}"]
     return {"mae": m["mae"], "rmse": m["rmse"], "r2": m["r2"], "baseline_mae": b["mae"]}
 
 
 def seed_stats(protocol_row):
+    """Seed-mean/SD of metrics for one arm (plus mean-predictor baseline MAE)."""
     out = {}
     for key in ("test", "validation"):
         per_seed = [fmt_row(r, key) for r in protocol_row]
@@ -116,6 +119,7 @@ def paired_bootstrap(preds, arm_a, arm_b):
 
 
 def main():
+    """CLI: aggregate all run dirs into results_summary.json + pairwise_report.json."""
     ap = __import__("argparse").ArgumentParser()
     ap.add_argument("--root", required=True, help="directory containing the 30 run subdirs")
     ap.add_argument("--protocol-pairs", default=None,

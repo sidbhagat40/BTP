@@ -32,6 +32,7 @@ from transformers import (AutoModelForSequenceClassification, AutoTokenizer,
 
 
 def sha256_of_file(path):
+    """Stream a file in 1 MiB blocks and return its SHA-256 hex digest."""
     h = hashlib.sha256()
     with open(path, "rb") as fh:
         for block in iter(lambda: fh.read(1 << 20), b""):
@@ -40,6 +41,7 @@ def sha256_of_file(path):
 
 
 def regression_metrics(y_true, y_pred):
+    """MAE, RMSE and R² in original MPa units."""
     err = np.asarray(y_pred) - np.asarray(y_true)
     mae = float(np.mean(np.abs(err)))
     rmse = float(np.sqrt(np.mean(err ** 2)))
@@ -49,6 +51,12 @@ def regression_metrics(y_true, y_pred):
 
 
 def main():
+    """CLI: fine-tune one (arm, seed) run with LoRA + fresh head and record full provenance.
+
+    Saves results.json (metrics, hyperparameters, dataset/model identity
+    hashes) and test_predictions.json (raw per-row values for the paired
+    bootstrap in downstream.aggregate) under the fresh output directory.
+    """
     ap = argparse.ArgumentParser()
     ap.add_argument("--model-path", required=True)
     ap.add_argument("--model-revision", default=None,
@@ -95,6 +103,7 @@ def main():
         tokenizer.pad_token = tokenizer.eos_token
 
     def tokenize_fn(examples):
+        """Tokenize the templated text and attach the z-scored regression label."""
         enc = tokenizer(examples["text"], truncation=True, max_length=args.max_length)
         enc["labels"] = [(float(y) - y_mean) / y_std for y in examples["target"]]
         return enc
@@ -103,12 +112,14 @@ def main():
                             remove_columns=[c for c in dataset["train"].column_names if c != "labels"])
 
     def compute_metrics(eval_pred):
+        """Evaluate in MPa by un-scaling the standardized predictions/labels."""
         preds, labels = eval_pred
         p = np.squeeze(preds) * y_std + y_mean
         t = np.squeeze(labels) * y_std + y_mean
         return regression_metrics(t, p)
 
     def build_model():
+        """Load the arm's model with LoRA adapters (Wqkv/Wo/Wi) and a fresh regression head."""
         model = AutoModelForSequenceClassification.from_pretrained(
             args.model_path, num_labels=1, problem_type="regression",
             attn_implementation="sdpa", reference_compile=False, torch_dtype=torch.float32,

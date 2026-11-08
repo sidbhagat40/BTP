@@ -19,6 +19,11 @@ STAGES = ("screen", "refine", "confirm", "repeat")
 
 
 def original_identity(model, revision):
+    """Fingerprint the original pretrained weights (local dir hashes or Hub commit SHA).
+
+    Refuses CPT exports and Trainer checkpoints; a Hub path must be pinned
+    to a 40-character revision for reproducible initialization.
+    """
     path = Path(model)
     if path.is_dir():
         if (path.parent / "selection.json").exists() or (path / "trainer_state.json").exists():
@@ -34,6 +39,7 @@ def original_identity(model, revision):
 
 
 def make_job(study, name, parameters, full=False, seed=None):
+    """Build one trial job: frozen config with the stage budget and optional seed."""
     config = dict(study["config"])
     config.update({key: parameters[key] for key in PARAMETERS if key != "training_mlm_probability"})
     config["output_dir"] = str(Path(study["directory"]) / "runs" / name)
@@ -45,6 +51,7 @@ def make_job(study, name, parameters, full=False, seed=None):
 
 
 def initialize(args):
+    """Create the frozen study plan (screening grid, config, identities); no training."""
     config = CPTConfig(**read_json(args.config))
     config.model_name_or_path = args.original_model or config.model_name_or_path
     if Path(config.model_name_or_path).is_dir():
@@ -96,6 +103,7 @@ def initialize(args):
 
 
 def load_study(directory):
+    """Load a study and verify manifest/original-model identity are unchanged since init."""
     root = Path(directory).resolve()
     study = read_json(root / "study.json")
     if study.get("format_version") != 1 or study["directory"] != str(root):
@@ -109,6 +117,7 @@ def load_study(directory):
 
 
 def completed_result(job):
+    """Return the stored tuning_result.json for a finished trial, or None."""
     path = Path(job["config"]["output_dir"]) / "tuning_result.json"
     if not path.exists():
         return None
@@ -119,6 +128,7 @@ def completed_result(job):
 
 
 def stage_results(study, stage, required=False):
+    """Sorted (best-first) completed results for a stage; optionally enforce completion."""
     path = Path(study["directory"]) / f"{stage}.json"
     if not path.exists():
         if required:
@@ -132,6 +142,12 @@ def stage_results(study, stage, required=False):
 
 
 def stage_jobs(study, stage):
+    """Plan (first call) and return the trial jobs of one search stage.
+
+    Refine holds decay/warmup around the screening anchor; confirm promotes
+    the top-2 learners plus the baseline to full-length runs; repeat re-runs
+    the confirm winner and baseline under two further training seeds.
+    """
     root = Path(study["directory"])
     path = root / f"{stage}.json"
     if path.exists():
@@ -168,6 +184,7 @@ def stage_jobs(study, stage):
 
 
 def run_job(study, job, cpu=False):
+    """Run one trial to completion (resume-safe) and record frozen tuning_result.json."""
     output = Path(job["config"]["output_dir"])
     done = completed_result(job)
     if done is not None:
@@ -218,6 +235,7 @@ def run_job(study, job, cpu=False):
 
 
 def report(study):
+    """Write report.md/results.csv from every completed stage and seed-summary tables."""
     root = Path(study["directory"])
     rows, lines = [], ["# CPT tuning: validation-only results", "",
                       "Loss is weighted by labelled tokens, using frozen 15% validation corruption.",
@@ -264,6 +282,7 @@ def report(study):
 
 
 def positive_int(value):
+    """argparse type: accept only positive integers."""
     value = int(value)
     if value < 1:
         raise argparse.ArgumentTypeError("Must be positive.")
@@ -271,6 +290,7 @@ def positive_int(value):
 
 
 def main():
+    """CLI: `init` freezes the plan, `run` executes a stage with a lock file, `report` summarizes."""
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="action", required=True)
     init = commands.add_parser("init", help="Freeze a search plan; does not train.")

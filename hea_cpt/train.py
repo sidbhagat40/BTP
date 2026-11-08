@@ -12,6 +12,7 @@ from .common import (
 
 @dataclass
 class CPTConfig:
+    """One arm's full training configuration, loadable from configs/*.json."""
     model_name_or_path: str
     data_dir: str
     output_dir: str
@@ -35,6 +36,7 @@ class CPTConfig:
     token_weighted_eval: bool = False
 
     def validate(self):
+        """Fail fast on non-positive batch/step/limit settings or bad optimisation parameters."""
         for field in ("per_device_train_batch_size", "per_device_eval_batch_size",
                       "gradient_accumulation_steps", "eval_steps", "logging_steps", "save_total_limit"):
             if getattr(self, field) < 1:
@@ -48,6 +50,7 @@ class CPTConfig:
 
 
 def choose_precision(requested, cpu):
+    """Resolve requested precision against the device; enforce single-GPU selection."""
     import torch
 
     if requested not in ("auto", "bf16", "fp16", "fp32"):
@@ -68,6 +71,7 @@ def choose_precision(requested, cpu):
 
 
 def subset(dataset, maximum, seed):
+    """Optionally shuffle-subsample a dataset to at most `maximum` rows (smoke/budget)."""
     if maximum is None or maximum >= len(dataset):
         return dataset
     if maximum < 1:
@@ -76,6 +80,12 @@ def subset(dataset, maximum, seed):
 
 
 def main():
+    """CLI entry point: train (or eval-only) one ModernBERT arm under strict run guards.
+
+    Checks configuration, enforces resume consistency, verifies tokenizer/
+    context compatibility, records a full provenance run_config, and saves
+    the final model/tokenizer plus selection.json.
+    """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True)
     parser.add_argument("--data-dir")

@@ -28,6 +28,7 @@ ARM_TAG = {"B1": "B1 original", "B2": "B2 old CPT", "B3": "B3 tuned CPT",
 
 
 def newest_state(run_dir):
+    """The most-advanced trainer_state.json under a run directory (max global_step)."""
     cands = glob.glob(os.path.join(run_dir, "**", "trainer_state.json"), recursive=True)
     best, best_step = None, -1
     for c in cands:
@@ -41,6 +42,7 @@ def newest_state(run_dir):
 
 
 def parse_sft_run_name(name):
+    """Split a `down-<protocol>-<arm>-s<seed>` run name into (protocol, arm, seed)."""
     m = re.match(r"down-(primary-C|secondary-CT|exploratory-T)-(B\d|L\d)-s(\d+)", name)
     if not m:
         return None
@@ -48,6 +50,7 @@ def parse_sft_run_name(name):
 
 
 def main():
+    """Render the SFT/CPT curve figures and the per-run curve summary CSV."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", required=True, help="dir containing outputs/ (extracted tarball)")
     ap.add_argument("--out", required=True)

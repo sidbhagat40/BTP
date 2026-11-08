@@ -31,6 +31,7 @@ PROT_N = {"primary-C": 110, "secondary-CT": 141, "exploratory-T": 31}
 
 
 def load_runs(root):
+    """Collect (protocol, arm, seed, results.json, test_predictions.json) per run dir."""
     runs = []
     for dirpath, _dirs, files in os.walk(root):
         if "results.json" not in files:
@@ -50,6 +51,7 @@ def load_runs(root):
 
 
 def fig_mae(ax, runs, metric, ylabel, baseline_key=None):
+    """Grouped bars of one test metric per arm × protocol with seed dots."""
     protocols = [p for p in PROT_ORDER if any(r["protocol"] == p for r in runs)]
     width = 0.15
     xs = np.arange(len(protocols))
@@ -84,6 +86,7 @@ def fig_mae(ax, runs, metric, ylabel, baseline_key=None):
 
 
 def fig_forest(ax, pairwise):
+    """Forest plot of pairwise test-MAE gap CIs, one vertical band per protocol."""
     protocols = [p for p in PROT_ORDER
                  if any(k.startswith(p + ":") for k in pairwise)]
     nprot = len(protocols)
@@ -117,6 +120,7 @@ def fig_forest(ax, pairwise):
 
 
 def main():
+    """Regenerate all downstream EDA figures and the flat test-metrics CSV."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", required=True)
     ap.add_argument("--out", required=True)

@@ -12,6 +12,12 @@ from .train import choose_precision
 
 
 def read_probes(path):
+    """Read and validate the JSONL probe file, cross-checking parsed formulas.
+
+    Enforces unique IDs, exactly one {answer} placeholder, >=2 distinct
+    candidates, expected ⊆ candidates, and agreement of formula_a/b
+    annotations with the deterministic ratio checker.
+    """
     rows = [json.loads(line) for line in Path(path).read_text(encoding="utf-8-sig").splitlines() if line.strip()]
     seen = set()
     for row in rows:
@@ -35,6 +41,12 @@ def read_probes(path):
 
 
 def candidate_encoding(tokenizer, template, answer, max_length):
+    """Mask exactly the answer span of one filled template.
+
+    Returns the encoded row with labelled positions and the list of masked
+    token indices; refuses probes where the answer shares a token with
+    context words, exceeds the context, or lands on special tokens.
+    """
     prefix, suffix = template.split("{answer}")
     text = prefix + answer + suffix
     encoded = tokenizer(text, return_offsets_mapping=True, return_token_type_ids=False,
@@ -61,6 +73,7 @@ def candidate_encoding(tokenizer, template, answer, max_length):
 
 
 def score_candidate(model, tokenizer, template, answer, device, precision, max_length):
+    """Mean and sum log probability of one candidate under masked-span scoring."""
     import torch
     import torch.nn.functional as functional
 
@@ -76,6 +89,7 @@ def score_candidate(model, tokenizer, template, answer, device, precision, max_l
 
 
 def open_mask_predictions(model, tokenizer, template, device, precision, max_length, k=5):
+    """Unrestricted top-k single-token predictions at the mask position (diagnostic side score)."""
     import torch
 
     text = template.replace("{answer}", tokenizer.mask_token)
@@ -93,6 +107,7 @@ def open_mask_predictions(model, tokenizer, template, device, precision, max_len
 
 
 def run_probe(model, tokenizer, row, device, precision, max_length):
+    """Rank all candidates for one probe and record ties, correctness and open-cloze output."""
     scored = [score_candidate(model, tokenizer, row["template"], candidate, device, precision, max_length)
               for candidate in row["candidates"]]
     scored.sort(key=lambda item: item["mean_log_probability"], reverse=True)
@@ -105,6 +120,7 @@ def run_probe(model, tokenizer, row, device, precision, max_length):
 
 
 def write_markdown(path, rows, results):
+    """Write the human-readable side-by-side comparison.md for all probes."""
     lines = ["# Original vs CPT: exploratory diagnostics", "",
              "These are hand-authored cloze probes, not validated scientific QA or a held-out benchmark.",
              "Candidate scores are mean log probabilities with the entire answer span masked. They are not calibrated answer probabilities.",
@@ -133,6 +149,7 @@ def write_markdown(path, rows, results):
 
 
 def main():
+    """CLI entry point: score every probe under both models and write comparison files."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--original-model", default="answerdotai/ModernBERT-base")
     parser.add_argument("--original-revision", default="main")
