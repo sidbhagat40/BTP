@@ -1,0 +1,81 @@
+{
+  "split": "validation",
+  "source_sha256": "379ac1277db58f00e11357b9c4b715ea4e92b02e3e09b913e623983ecf0ea897",
+  "sample_limited": true,
+  "diagnostic_only": false,
+  "comparisons": [
+    {
+      "masking_probability": 0.15,
+      "seeds": [
+        42
+      ],
+      "original": {
+        "token_weighted_mlm_loss": {
+          "mean": 1.293525650376814,
+          "std_across_mask_seeds": 0.0
+        },
+        "masked_token_accuracy": {
+          "mean": 0.7313915857605178,
+          "std_across_mask_seeds": 0.0
+        },
+        "masked_token_top5_accuracy": {
+          "mean": 0.8640776699029126,
+          "std_across_mask_seeds": 0.0
+        },
+        "paper_macro_mlm_loss": {
+          "mean": 1.27549540585792,
+          "std_across_mask_seeds": 0.0
+        },
+        "mask_replaced_top1_accuracy": {
+          "mean": 0.7,
+          "std_across_mask_seeds": 0.0
+        }
+      },
+      "cpt": {
+        "token_weighted_mlm_loss": {
+          "mean": 0.879004946897197,
+          "std_across_mask_seeds": 0.0
+        },
+        "masked_token_accuracy": {
+          "mean": 0.7844660194174757,
+          "std_across_mask_seeds": 0.0
+        },
+        "masked_token_top5_accuracy": {
+          "mean": 0.916504854368932,
+          "std_across_mask_seeds": 0.0
+        },
+        "paper_macro_mlm_loss": {
+          "mean": 0.8431010667900205,
+          "std_across_mask_seeds": 0.0
+        },
+        "mask_replaced_top1_accuracy": {
+          "mean": 0.7603174603174603,
+          "std_across_mask_seeds": 0.0
+        }
+      },
+      "mean_loss_reduction": 0.414520703479617,
+      "relative_mean_loss_reduction_percent": 32.04580468573344,
+      "mean_accuracy_increase": 0.053074433656957964,
+      "paired_paper_bootstrap": {
+        "unit": "source paper; paired across models and all masking seeds",
+        "papers": 2,
+        "iterations": 100,
+        "bootstrap_seed": 2026,
+        "positive_means": "CPT improvement",
+        "loss_reduction_95ci": [
+          0.3703386829243117,
+          0.4944499952114868
+        ],
+        "accuracy_increase_95ci": [
+          0.04723618090452261,
+          0.06363636363636363
+        ],
+        "paper_macro_loss_reduction_95ci": [
+          0.3703386829243117,
+          0.4944499952114868
+        ],
+        "scope": "Paper-sampling uncertainty conditional on these checkpoints and masking seeds; not training-seed uncertainty."
+      }
+    }
+  ]
+}

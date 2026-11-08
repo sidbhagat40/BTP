@@ -211,7 +211,8 @@ Everything in this section was produced **after** the prespecified conclusions
 above, on the 84-probe suite (`examples/evaluation_probes.jsonl`, eight
 categories, ≥10 probes each) and a fresh replication of the full 7-step suite.
 It is exploratory: the frozen confirmatory claims above were not revised in its
-light.
+light. All five per-arm probe files and every stage summary of the replication
+are committed under `reports/posthoc/`.
 
 ### Replication check (fresh suite, tuned base arm B3)
 
