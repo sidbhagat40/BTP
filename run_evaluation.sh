@@ -52,7 +52,7 @@ echo "6/7: Hand-authored English passage diagnostics (not a forgetting benchmark
 quantitative --input-file examples/general_english_demo.jsonl --split diagnostic \
   --probabilities 0.15 --seeds 42 43 44 45 46 --output-dir "$ROOT/english-demo"
 
-echo "7/7: All 32 controlled cloze probes, including alloy-composition comparisons"
+echo "7/7: All 84 controlled cloze probes, including alloy-composition comparisons"
 python -m hea_cpt.probes --original-model "$ORIGINAL" --cpt-model "$CPT" \
   --offline --output-dir "$ROOT/probes"
 

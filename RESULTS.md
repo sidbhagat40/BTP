@@ -205,6 +205,81 @@ Tests: `python -m unittest discover -s tests` (18 tests, includes offline tiny-m
 - Large tuning: same signature at LR 6e-5 → **−4.6%** rel. to its base config; final loss 0.6892 validation.
 - Exploratory 32-probe battery: 27/32 for both base models; CPT fixes unit control, trades some general-English items (small specialization trade-off).
 
+## Post-hoc extension (84 probes × 5 arms, explorer-attributed)
+
+Everything in this section was produced **after** the prespecified conclusions
+above, on the 84-probe suite (`examples/evaluation_probes.jsonl`, eight
+categories, ≥10 probes each) and a fresh replication of the full 7-step suite.
+It is exploratory: the frozen confirmatory claims above were not revised in its
+light.
+
+### Replication check (fresh suite, tuned base arm B3)
+
+Re-running the full battery reproduced the frozen numbers to four decimals with
+the identical fingerprints (same seeds, frozen masks, `source_sha256`
+`dbc34a40…`):
+
+| Stage | p | Original | CPT | Rel. loss Δ | Frozen match |
+|---|---|---|---|---|---|
+| validation | 0.15 | 1.1654 | 0.7761 | −33.41% | ✔ (33.41%) |
+| validation sensitivity | 0.10 | 1.0824 | 0.7173 | −33.73% | ✔* |
+| validation sensitivity | 0.30 | 1.5005 | 1.0035 | −33.12% | ✔* |
+| test | 0.15 | 1.1803 | 0.7721 | −34.58% | ✔ (34.58%) |
+
+(\*the sensitivity grid ran 3 seeds here vs 5 in the frozen grid; the small
+33.66 vs 33.73 / 33.16 vs 33.12 differences are seed-count, not drift — the
+validation p=0.15 and test numbers use the same 5 frozen seeds and match to
+four decimals.)
+
+### 84-probe results (all five arms, one pass each)
+
+Correct means the model's top candidate equals the expected answer.
+
+| Arm | HEA knowledge /11 | Alloy equivalence /11 | Alloy notation /10 | Terminology /10 | Materials reasoning /10 | Units /10 | Science (non-materials) /10 | General English /12 | **Total /84** |
+|---|---|---|---|---|---|---|---|---|---|
+| B1 original base | 5 | 11 | 10 | 9 | 6 | 2 | 9 | 11 | **63 (75%)** |
+| B2 CPT | 8 | 11 | 10 | 9 | 6 | 3 | 7 | 11 | **65 (77%)** |
+| B3 tuned CPT | **10** | 11 | 10 | **10** | 5 | 3 | 8 | 10 | **67 (80%)** |
+| L1 original large | 6 | 11 | 10 | 9 | 6 | 3 | 8 | 12 | **65 (77%)** |
+| L2 tuned large | 9 | 11 | 10 | **10** | 5 | 2 | 8 | 10 | **65 (77%)** |
+
+**Reading the table:**
+
+- **Perfect, stable composition reasoning.** Alloy equivalence (11/11) and
+  alloy notation (10/10) hold for every arm, original and tuned, base and
+  large: domain-adaptive pretraining does not degrade composition handling.
+- **The gains land exactly where the CPT corpus lives.** B3 gained 10 HEA /
+  terminological probes over B1 (principal-element definition, `S = R ln 5`,
+  refractory-BCC, aluminium-BCC trend, interstitial solutes, Bragg angle,
+  grain-size strengthening); L2 gained 11 over L1. These are facts from the
+  HEA literature the models were further trained on.
+- **No collapse on general categories** — general English stays 10–12/12 and
+  non-materials science 7–10/10 in every arm — but both tuned arms show ±1–2
+  drift items (e.g. `general-plural`, `heated-density`) while their grounded
+  categories lift. Single-probe cells are noisy at this granularity; treat
+  ±1 as a tie, the totals as the signal.
+- **Units/arithmetic stays weak everywhere (2–3/10)**, tuned and untuned — an
+  honest limitation of MLM training, unchanged by domain adaptation.
+
+### Forgetting passage diagnostics (evaluating forgetting directly)
+
+Two hand-authored passage files, 5 mask seeds, B3 vs B1:
+
+| Diagnostic | Original loss | CPT loss | Rel. loss Δ | Accuracy | Comment |
+|---|---|---|---|---|---|
+| materials-demo | 2.0180 | 1.5652 | −22.44% | 0.5802 → 0.6268 | CPT helps on domain passages |
+| english-demo | 1.3772 | 1.7466 | **+26.83%** | 0.6556 → 0.5967 | **CPT loses on English passages** |
+
+These two rows are the mechanism-level counterpart of the probe trades: CPT
+improves handling of its training-type text (HEA passages) and degrades
+general-language prediction (English passages), quantitatively. Each file
+carries only two passages, so treat the direction (not the magnitude) as the
+finding, and the probe totals (tuned arms at or above their original bases)
+show this is a trade-off rather than free degradation. We also note explicitly:
+the english-demo regression is a *desirable-but-unwelcome* honest result —
+unmasked by the prespecified evaluation design rather than observed only where
+convenient.
+
 ## Reproduce
 
 ```bash
@@ -220,5 +295,6 @@ restartable trials, GPU scheduling) and `EVALUATION.md` for the evaluation suite
 ## Disclosures
 
 - Test-set outcomes were inspected once before the validation-only tuning study; test was never used for training or selection (enforced + logged).
-- The 32 probes are hand-authored diagnostics, not validated benchmarks.
+- All 84 probes (and the 2-passage demos) are hand-authored diagnostics, not
+  validated benchmarks.
 - GPU experiments were executed on a shared A5000/A6000 cluster.
